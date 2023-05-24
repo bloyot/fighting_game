@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://ygxngejhh6hc"]
+
+[ext_resource type="Script" path="res://Source/UI/debug_ui.gd" id="1_3xvia"]
+
+[node name="DebugUI" type="CanvasLayer"]
+script = ExtResource("1_3xvia")
+
+[node name="State" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 32
+text = "State: "
