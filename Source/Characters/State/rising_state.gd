@@ -12,6 +12,7 @@ func get_animation_name():
     return animation_name
 
 func update():
+    super.update()
     if (character.velocity.y >= 0):
         return "falling"
 

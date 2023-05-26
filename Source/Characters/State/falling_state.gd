@@ -12,8 +12,8 @@ func get_animation_name():
     return animation_name
 
 func update():    
-    if (character.is_on_floor()):
-        print("landing")
+    super.update()
+    if (character.is_on_floor()):        
         return "landing"
 
     if (get_attack_input()):        

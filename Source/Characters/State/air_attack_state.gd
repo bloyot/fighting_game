@@ -12,8 +12,9 @@ func get_animation_name():
     return animation_name
 
 func update() -> String:
+    super.update()
     var maybe_next_state = ""
-    if (animation_player.current_animation_position >= animation_frames):
+    if (animation_player.current_animation_position >= animation_length):
         maybe_next_state = "falling"	
 
     # lock our velocity for the duration of the attack

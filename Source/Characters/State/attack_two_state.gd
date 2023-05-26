@@ -1,9 +1,9 @@
 extends BaseCharacterState
 
-class_name AttackOneState
+class_name AttackTwoState
 
-@export var state_name: StringName = "attack_1"
-@export var animation_name: StringName = "attack_1"
+@export var state_name: StringName = "attack_2"
+@export var animation_name: StringName = "attack_2"
 @export var attack_buffer: int = 10
 
 func get_state_name():
@@ -16,11 +16,7 @@ func update() -> String:
     super.update()    
     if (animation_player.current_animation_position >= animation_length):        
         if (has_buffered_input("attack", attack_buffer)):
-            return "attack_2"
-        return "attack_1_end"	
+            return "attack_3"
+        return "idle"	
 
     return ""
-
-func on_enter():
-    super.on_enter()
-    character.velocity = Vector2.ZERO

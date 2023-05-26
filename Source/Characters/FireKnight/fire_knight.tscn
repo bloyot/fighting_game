@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://dseanuadidjfx"]
+[gd_scene load_steps=39 format=3 uid="uid://dseanuadidjfx"]
 
 [ext_resource type="Texture2D" uid="uid://mrgiw7vmhebh" path="res://Assets/Characters/FireKnight/fire_knight_spritesheet.png" id="1_4bwuy"]
 [ext_resource type="Script" path="res://Source/Characters/player_controller.gd" id="1_g446k"]
@@ -10,7 +10,13 @@
 [ext_resource type="Script" path="res://Source/Characters/State/landing_state.gd" id="8_fu8uf"]
 [ext_resource type="Script" path="res://Source/Characters/State/attack_one_state.gd" id="9_jbpti"]
 [ext_resource type="Script" path="res://Source/Characters/State/attack_one_end_state.gd" id="10_nxu1k"]
+[ext_resource type="Script" path="res://Source/Characters/State/attack_two_state.gd" id="11_ilraj"]
 [ext_resource type="Script" path="res://Source/Characters/State/air_attack_state.gd" id="11_ogp7p"]
+[ext_resource type="Script" path="res://Source/Characters/State/block_start_state.gd" id="12_tc56r"]
+[ext_resource type="Script" path="res://Source/Characters/State/attack_three_state.gd" id="12_xfokc"]
+[ext_resource type="Script" path="res://Source/Characters/State/block_state.gd" id="13_kjsyu"]
+[ext_resource type="Script" path="res://Source/Characters/State/block_end_state.gd" id="14_fej3d"]
+[ext_resource type="Script" path="res://Source/Characters/State/attack_special_state.gd" id="14_gsk31"]
 
 [sub_resource type="Animation" id="Animation_wkjpn"]
 length = 0.001
@@ -137,7 +143,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_tgog0"]
 resource_name = "block"
-length = 0.3298
+length = 0.2627
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -154,7 +160,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_lv8kf"]
 resource_name = "block_end"
-length = 0.3302
+length = 0.2621
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -170,7 +176,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_aq2te"]
 resource_name = "block"
-length = 1.0273
+length = 0.2615
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -406,5 +412,23 @@ script = ExtResource("9_jbpti")
 [node name="AttackOneEndState" type="Node2D" parent="States" groups=["states"]]
 script = ExtResource("10_nxu1k")
 
+[node name="AttackTwoState" type="Node2D" parent="States" groups=["states"]]
+script = ExtResource("11_ilraj")
+
+[node name="AttackThreeState" type="Node2D" parent="States" groups=["states"]]
+script = ExtResource("12_xfokc")
+
 [node name="AirAttackState" type="Node2D" parent="States" groups=["states"]]
 script = ExtResource("11_ogp7p")
+
+[node name="AttackSpecialState" type="Node2D" parent="States" groups=["states"]]
+script = ExtResource("14_gsk31")
+
+[node name="BlockStartState" type="Node2D" parent="States" groups=["states"]]
+script = ExtResource("12_tc56r")
+
+[node name="BlockState" type="Node2D" parent="States" groups=["states"]]
+script = ExtResource("13_kjsyu")
+
+[node name="BlockEndState" type="Node2D" parent="States" groups=["states"]]
+script = ExtResource("14_fej3d")

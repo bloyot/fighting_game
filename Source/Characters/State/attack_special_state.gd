@@ -1,0 +1,23 @@
+extends BaseCharacterState
+
+class_name AttackSpecialState
+
+@export var state_name: StringName = "attack_special"
+@export var animation_name: StringName = "attack_special"
+
+func get_state_name():
+    return state_name
+
+func get_animation_name():
+    return animation_name
+
+func update() -> String:
+    super.update()    
+    if (animation_player.current_animation_position >= animation_length):                
+        return "idle"	
+
+    return ""
+
+func on_enter():
+    super.on_enter()
+    character.velocity = Vector2.ZERO

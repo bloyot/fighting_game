@@ -14,8 +14,9 @@ func get_animation_name():
 	return animation_name
 
 func update():
+	super.update()
 	var maybe_next_state = ""	
-	if (animation_player.current_animation_position >= animation_frames):
+	if (animation_player.current_animation_position >= animation_length):
 		maybe_next_state = "rising"
 	
 	if (!jump_start):
