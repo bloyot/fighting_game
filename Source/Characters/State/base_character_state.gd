@@ -16,7 +16,6 @@ func setup(_animation_player: AnimationPlayer, _character: CharacterBody2D):
 	self.animation_length = animation_player.get_animation(get_animation_name()).length	
 
 ### Interface functions 
-# these are intended to be implemented by each state
 func get_state_name() -> String:	
 	push_error("Uninteded interface function call get state name")
 	return ""
@@ -30,10 +29,15 @@ func update() -> String:
 	return ""
 
 func on_enter():	
+	character.freeze_facing = should_freeze_facing()
 	animation_player.play(get_animation_name())	
 
 func on_exit():
 	pass
+
+# core functions
+func should_freeze_facing(): 
+	return false
 
 func move_left_right():	
 	var direction = frame_buffer.back()["direction"]

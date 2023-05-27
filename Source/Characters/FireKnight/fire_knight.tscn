@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://dseanuadidjfx"]
+[gd_scene load_steps=41 format=3 uid="uid://dseanuadidjfx"]
 
 [ext_resource type="Texture2D" uid="uid://mrgiw7vmhebh" path="res://Assets/Characters/FireKnight/fire_knight_spritesheet.png" id="1_4bwuy"]
 [ext_resource type="Script" path="res://Source/Characters/player_controller.gd" id="1_g446k"]
@@ -17,6 +17,7 @@
 [ext_resource type="Script" path="res://Source/Characters/State/block_state.gd" id="13_kjsyu"]
 [ext_resource type="Script" path="res://Source/Characters/State/block_end_state.gd" id="14_fej3d"]
 [ext_resource type="Script" path="res://Source/Characters/State/attack_special_state.gd" id="14_gsk31"]
+[ext_resource type="Script" path="res://Source/Characters/State/take_hit_state.gd" id="18_xgkwb"]
 
 [sub_resource type="Animation" id="Animation_wkjpn"]
 length = 0.001
@@ -44,6 +45,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [Vector2i(0, 0)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../SwordHurtbox:monitoring")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_mtqqk"]
 resource_name = "air_attack"
@@ -63,7 +76,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_bpqjd"]
 resource_name = "attack_1"
-length = 0.6313
+length = 0.5614
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -75,6 +88,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [Vector2i(0, 7), Vector2i(1, 7), Vector2i(2, 7), Vector2i(3, 7), Vector2i(4, 7), Vector2i(5, 7)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../SwordHurtbox:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
 }
 
 [sub_resource type="Animation" id="Animation_dqoks"]
@@ -365,6 +390,9 @@ _data = {
 radius = 12.0
 height = 44.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sea7p"]
+size = Vector2(53.1922, 106.877)
+
 [node name="FireKnight" type="CharacterBody2D"]
 position = Vector2(0, -2)
 script = ExtResource("1_g446k")
@@ -382,7 +410,6 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(2, 41)
 shape = SubResource("CapsuleShape2D_xsoah")
 
@@ -432,3 +459,18 @@ script = ExtResource("13_kjsyu")
 
 [node name="BlockEndState" type="Node2D" parent="States" groups=["states"]]
 script = ExtResource("14_fej3d")
+
+[node name="TakeHitState" type="Node2D" parent="States" groups=["states"]]
+script = ExtResource("18_xgkwb")
+
+[node name="SwordHurtbox" type="Area2D" parent="."]
+visible = false
+position = Vector2(27, 39)
+scale = Vector2(-0.78959, -0.552036)
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SwordHurtbox"]
+position = Vector2(-22.7966, 11.7746)
+shape = SubResource("RectangleShape2D_sea7p")
+
+[connection signal="area_entered" from="SwordHurtbox" to="." method="_on_sword_hurtbox_area_entered"]

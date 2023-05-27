@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=3 uid="uid://4yqy5hqx3q5o"]
+
+[ext_resource type="Script" path="res://Source/game.gd" id="1_jy8ap"]
+[ext_resource type="PackedScene" uid="uid://ygxngejhh6hc" path="res://Source/UI/debug_ui.tscn" id="2_w3e7m"]
+[ext_resource type="PackedScene" uid="uid://dseanuadidjfx" path="res://Source/Characters/FireKnight/fire_knight.tscn" id="3_hc1mj"]
+[ext_resource type="Script" path="res://Source/Characters/dummy_controller.gd" id="4_ufp3g"]
+[ext_resource type="PackedScene" uid="uid://dtrhxtqg2n3qc" path="res://Source/Levels/level_2.tscn" id="5_ya2uy"]
+[ext_resource type="Script" path="res://Source/camera.gd" id="6_p6jvm"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_jy8ap")
+
+[node name="DebugUI" parent="." instance=ExtResource("2_w3e7m")]
+
+[node name="Player1" parent="." instance=ExtResource("3_hc1mj")]
+position = Vector2(56, 53.0001)
+scale = Vector2(1.75, 1.75)
+
+[node name="Player2" parent="." instance=ExtResource("3_hc1mj")]
+position = Vector2(261, 56)
+scale = Vector2(1.75, 1.75)
+script = ExtResource("4_ufp3g")
+
+[node name="Level2" parent="." instance=ExtResource("5_ya2uy")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(127, 39)
+scale = Vector2(1.25, 1)
+zoom = Vector2(1.117, 1.117)
+script = ExtResource("6_p6jvm")
+
+[connection signal="state_change" from="Player1" to="DebugUI" method="_on_character_state_change"]

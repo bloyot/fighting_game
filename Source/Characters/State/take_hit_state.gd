@@ -1,10 +1,9 @@
 extends BaseCharacterState
 
-class_name AttackTwoState
+class_name TakeHitState
 
-@export var state_name: StringName = "attack_2"
-@export var animation_name: StringName = "attack_2"
-@export var attack_buffer: int = 10
+@export var state_name: StringName = "take_hit"
+@export var animation_name: StringName = "take_hit"
 
 func get_state_name():
     return state_name
@@ -16,10 +15,7 @@ func should_freeze_facing():
     return true
 
 func update() -> String:
-    super.update()    
+    super.update()
     if (animation_player.current_animation_position >= animation_length):        
-        if (has_buffered_input("attack", attack_buffer)):
-            return "attack_3"
-        return "idle"	
-
+        return "idle"
     return ""
