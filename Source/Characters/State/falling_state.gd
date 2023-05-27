@@ -16,7 +16,7 @@ func update():
     if (character.is_on_floor()):        
         return "landing"
 
-    if (get_attack_input()):        
+    if (has_buffered_input("attack")):        
         return "air_attack"
 
     move_left_right() 

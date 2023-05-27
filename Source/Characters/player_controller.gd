@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 signal state_change(old_state: BaseCharacterState, new_state: BaseCharacterState)
 
+@export var player_device_id: int = 0
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var states = {}
@@ -21,6 +23,7 @@ func _ready():
 	change_state("idle")
 
 func _physics_process(delta):
+	curr_state.set_input(get_input())
 	var maybe_new_state = curr_state.update()
 	if (maybe_new_state != ""):
 		change_state(maybe_new_state)
@@ -29,6 +32,7 @@ func _physics_process(delta):
 
 	# determine movement based on state
 	move(delta)
+		
 
 ########################################
 ############# Callbacks ################
@@ -44,6 +48,15 @@ func move(delta: float):
 		velocity.y += gravity * delta		
 
 	move_and_slide()
+
+func get_input(): 
+	return {
+		"direction": Input.get_axis("move_left", "move_right"),
+		"attack": Input.is_action_just_pressed("attack"),
+		"attack_special": Input.is_action_pressed("attack_special"),
+		"jump": Input.is_action_just_pressed("jump"),
+		"block": Input.is_action_pressed("block"),
+	}
 
 func change_state(new_state_name: String):
 	assert(new_state_name != "", "Invalid state change")

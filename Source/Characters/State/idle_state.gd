@@ -12,23 +12,21 @@ func get_animation_name():
     return animation_name
 
 func update() -> String:
-    super.update()
-    var maybe_next_state = ""
+    super.update()    
     
-    if get_jump_input():
+    if has_buffered_input("jump"):
         return "jump"
 
-    if (get_block_input()):        
+    if has_buffered_input("block"):
         return "block_start"
 
-    if get_attack_input():
+    if has_buffered_input("attack"):
         return "attack_1"
 
     if has_buffered_input("attack_special"):        
         return "attack_special"
 
-    var direction = get_direction_input()
-    if (direction):        
-        maybe_next_state = "run"
+    if has_buffered_input("direction"):       
+        return "run"
     
-    return maybe_next_state
+    return ""

@@ -16,16 +16,16 @@ func update():
     if (animation_player.current_animation_position >= animation_length):
         return "idle"	
 
-    if (get_direction_input()):
+    if has_buffered_input("direction"):        
         return "run"
 
-    if (get_block_input()):        
+    if has_buffered_input("block"):
         return "block_start"
 
-    if (get_jump_input()):
+    if has_buffered_input("jump"):
         return "jump"
 
-    if (get_attack_input()):
+    if has_buffered_input("attack"):
         return "attack_1"
 
     if has_buffered_input("attack_special"):

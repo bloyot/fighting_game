@@ -16,7 +16,7 @@ func update():
     if (character.velocity.y >= 0):
         return "falling"
 
-    if (get_attack_input()):
+    if has_buffered_input("attack"):
         return "air_attack"
 
     move_left_right() 

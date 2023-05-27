@@ -1,20 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://4yqy5hqx3q5o"]
+[gd_scene load_steps=5 format=3 uid="uid://4yqy5hqx3q5o"]
 
-[ext_resource type="PackedScene" uid="uid://cxhhl713oei1q" path="res://Source/Ground/ground.tscn" id="1_0gj41"]
 [ext_resource type="PackedScene" uid="uid://ygxngejhh6hc" path="res://Source/UI/debug_ui.tscn" id="1_60dc6"]
 [ext_resource type="PackedScene" uid="uid://dseanuadidjfx" path="res://Source/Characters/FireKnight/fire_knight.tscn" id="2_4rvcv"]
+[ext_resource type="PackedScene" uid="uid://dtrhxtqg2n3qc" path="res://Source/Levels/level_2.tscn" id="3_31dfr"]
+[ext_resource type="Script" path="res://Source/camera.gd" id="4_echfr"]
 
 [node name="Main" type="Node2D"]
 
 [node name="DebugUI" parent="." instance=ExtResource("1_60dc6")]
 
-[node name="Camera2D" type="Camera2D" parent="."]
-
-[node name="Ground" parent="." instance=ExtResource("1_0gj41")]
-position = Vector2(0, 190)
-
 [node name="FireKnight" parent="." instance=ExtResource("2_4rvcv")]
-position = Vector2(-216, 67)
+position = Vector2(125, 53.0001)
 scale = Vector2(1.75, 1.75)
+
+[node name="Level2" parent="." instance=ExtResource("3_31dfr")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(127, 39)
+scale = Vector2(1.25, 1)
+zoom = Vector2(1.117, 1.117)
+script = ExtResource("4_echfr")
 
 [connection signal="state_change" from="FireKnight" to="DebugUI" method="_on_character_state_change"]

@@ -13,6 +13,6 @@ func get_animation_name():
 
 func update() -> String:
     super.update()
-    if (!get_block_input()):
+    if (!has_buffered_input("block")):
         return "block_end"
     return ""

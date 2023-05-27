@@ -19,6 +19,7 @@ func update() -> String:
 
 func on_enter():
     super.on_enter()
+    character.velocity = Vector2.ZERO
     animation_player.speed_scale = 2.0
 
 func on_exit():

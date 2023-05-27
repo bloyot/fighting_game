@@ -14,10 +14,9 @@ func get_animation_name():
 	return animation_name
 
 func update():
-	super.update()
-	var maybe_next_state = ""	
+	super.update()	
 	if (animation_player.current_animation_position >= animation_length):
-		maybe_next_state = "rising"
+		return "rising"
 	
 	if (!jump_start):
 		character.velocity.y = Globals.JUMP_VELOCITY
@@ -25,7 +24,7 @@ func update():
 
 	move_left_right()
 
-	return maybe_next_state
+	return ""
 
 func on_exit():
 	jump_start = false

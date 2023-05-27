@@ -27,9 +27,6 @@ func get_animation_name() -> String:
 
 ### Base class functions
 func update() -> String:				
-	frame_buffer.push_back(get_input())	
-	if (frame_buffer.size() > frame_buffer_frames):
-		frame_buffer.pop_front()
 	return ""
 
 func on_enter():	
@@ -39,23 +36,17 @@ func on_exit():
 	pass
 
 func move_left_right():	
-	var direction = get_direction_input()
+	var direction = frame_buffer.back()["direction"]
 	if (direction):
 		character.velocity.x = direction * Globals.SPEED	
 	else:
 		# if not holding a button, slow down towards zero
 		character.velocity.x = move_toward(character.velocity.x, 0, Globals.SPEED)	
 
-# Input functions
-# return a map of the inputs that were pressed this frame
-func get_input() -> Dictionary:
-	return {
-		"direction": get_direction_input(),
-		"attack": get_attack_input(),
-		"attack_special": get_attack_special_input(),
-		"jump": get_jump_input(),
-		"block": get_block_input(),
-	}
+func set_input(input: Dictionary):
+	frame_buffer.push_back(input)	
+	if (frame_buffer.size() > frame_buffer_frames):
+		frame_buffer.pop_front()	
 
 # return true if the input exists in the last x buffered frames
 func has_buffered_input(input: String, frames_back: int = 1) -> bool:
@@ -63,18 +54,3 @@ func has_buffered_input(input: String, frames_back: int = 1) -> bool:
 		if (frame.has(input) and frame[input]):
 			return true
 	return false
-
-func get_direction_input():
-	return Input.get_axis("move_left", "move_right")
-
-func get_attack_input():
-	return Input.is_action_just_pressed("attack")
-
-func get_jump_input():
-	return Input.is_action_just_pressed("jump")
-
-func get_block_input():
-	return Input.is_action_pressed("block")
-
-func get_attack_special_input():
-	return Input.is_action_pressed("attack_special")

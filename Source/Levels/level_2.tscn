@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3 uid="uid://dtrhxtqg2n3qc"]
+
+[ext_resource type="Texture2D" uid="uid://dis86qd4117jm" path="res://Assets/Levels/Level2/parallax-00.png" id="1_sdmsx"]
+[ext_resource type="Texture2D" uid="uid://c7kl5idee671w" path="res://Assets/Levels/Level2/parallax-01.png" id="2_nsobv"]
+[ext_resource type="Texture2D" uid="uid://b4e75wg6ayenl" path="res://Assets/Levels/Level2/parallax-02.png" id="3_ytfsa"]
+[ext_resource type="Texture2D" uid="uid://cmj1c6p6casga" path="res://Assets/Levels/Level2/parallax-03.png" id="4_6r2ff"]
+[ext_resource type="Texture2D" uid="uid://cffrcmly1i2nv" path="res://Assets/Levels/Level2/parallax-04.png" id="5_ihmj1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1tbvk"]
+
+[node name="Level2" type="Node2D"]
+
+[node name="Parallax" type="ParallaxBackground" parent="."]
+
+[node name="Layer1" type="ParallaxLayer" parent="Parallax"]
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(1440, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax/Layer1"]
+texture = ExtResource("1_sdmsx")
+
+[node name="Layer2" type="ParallaxLayer" parent="Parallax"]
+motion_scale = Vector2(0.6, 0.6)
+motion_mirroring = Vector2(1440, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax/Layer2"]
+texture = ExtResource("2_nsobv")
+
+[node name="Layer3" type="ParallaxLayer" parent="Parallax"]
+motion_scale = Vector2(0.7, 0.7)
+motion_mirroring = Vector2(1440, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax/Layer3"]
+texture = ExtResource("3_ytfsa")
+
+[node name="Layer4" type="ParallaxLayer" parent="Parallax"]
+motion_mirroring = Vector2(1440, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax/Layer4"]
+texture = ExtResource("4_6r2ff")
+
+[node name="Layer5" type="ParallaxLayer" parent="Parallax"]
+motion_mirroring = Vector2(1440, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax/Layer5"]
+texture = ExtResource("5_ihmj1")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(2, 182)
+scale = Vector2(1000, 1)
+shape = SubResource("RectangleShape2D_1tbvk")
