@@ -6,27 +6,24 @@ signal state_change(old_state: BaseCharacterState, new_state: BaseCharacterState
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-
 # track all states here for reference
 var states = {}
-
 # track our current state here
 var curr_state = null
-
 # some states want to hang in the air like the arial attack
 var apply_gravity = true
-
 # use this to avoid flipping our facing during the middle of an attack or other animation
 var freeze_facing = false
-
 # keep a reference to the other player to determine facing
 var other_player: PlayerController
+# our current facing 
+var curr_facing_left: bool = false
 
 ########################################
 ########## Engine Overrides ############
 ########################################
 func _ready():
-	# TODO it's likely this is affecting the dummy controller also by setting the same states
+	# setup the states
 	var states_group = $States.get_children()	
 	for state in states_group:
 		assert(state.get_state_name() != "")
@@ -43,7 +40,7 @@ func _physics_process(delta):
 
 	# determine facing based on where the opposing character is relative to us		
 	if (!freeze_facing):
-		$Sprite2D.flip_h = other_player.position.x < position.x
+		set_facing(other_player.position.x < position.x)
 		
 	# determine movement based on state
 	move(delta)
@@ -52,10 +49,10 @@ func _physics_process(delta):
 ########################################
 ############# Callbacks ################
 ########################################
+func _on_sword_hitbox_body_entered(body):
+	if (body == other_player && other_player.curr_state.get_state_name() != "block"):
+		other_player.take_hit()	
 
-func _on_sword_hurtbox_area_entered(area):	
-	if (area.get_parent() == other_player && other_player.curr_state.get_state_name() != "block"):
-		other_player.take_hit()
 
 ########################################
 ########## Class Functions #############
@@ -91,3 +88,12 @@ func change_state(new_state_name: String):
 
 func take_hit():
 	change_state("take_hit")
+
+func set_facing(should_face_left: bool):
+	if (should_face_left and !curr_facing_left):
+		curr_facing_left = true
+		scale.x = scale.x * -1
+
+	if (!should_face_left and curr_facing_left):
+		curr_facing_left = false
+		scale.x = scale.x * -1		
