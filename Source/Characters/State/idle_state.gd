@@ -30,3 +30,7 @@ func update() -> String:
         return "run"
     
     return ""
+
+func on_enter():
+    super.on_enter()
+    character.velocity = Vector2.ZERO

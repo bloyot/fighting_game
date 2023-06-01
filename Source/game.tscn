@@ -13,7 +13,7 @@ script = ExtResource("1_jy8ap")
 [node name="DebugUI" parent="." instance=ExtResource("2_w3e7m")]
 
 [node name="Player1" parent="." instance=ExtResource("3_hc1mj")]
-position = Vector2(56, 53.0001)
+position = Vector2(56, 53)
 scale = Vector2(1.75, 1.75)
 
 [node name="Player2" parent="." instance=ExtResource("3_hc1mj")]
@@ -24,9 +24,11 @@ script = ExtResource("4_ufp3g")
 [node name="Level2" parent="." instance=ExtResource("5_ya2uy")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(127, 39)
+position = Vector2(126, 40)
 scale = Vector2(1.25, 1)
-zoom = Vector2(1.117, 1.117)
+zoom = Vector2(1.106, 1.106)
 script = ExtResource("6_p6jvm")
+min_x = -1000
+max_x = 1000
 
 [connection signal="state_change" from="Player1" to="DebugUI" method="_on_character_state_change"]

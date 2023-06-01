@@ -18,6 +18,9 @@ var freeze_facing = false
 var other_player: PlayerController
 # our current facing 
 var curr_facing_left: bool = false
+# store the camera lock information relevant to the player to determine if we need to lock the movement left/right
+# array[0] = is_left_locked, array[1] = is_right_locked 
+var camera_lock_state: Array = [false, false]
 
 ########################################
 ########## Engine Overrides ############
@@ -63,6 +66,12 @@ func move(delta: float):
 	if not is_on_floor() and apply_gravity:	
 		velocity.y += gravity * delta		
 
+	# if we are moving right, and the camera is locked on the right side, set velocity 0
+	if (velocity.x > 0 and camera_lock_state[1]):
+		velocity.x = 0
+	# same for left
+	if (velocity.x < 0 and camera_lock_state[0]):
+		velocity.x = 0
 	move_and_slide()
 
 func get_input(): 	

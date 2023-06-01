@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://dtrhxtqg2n3qc"]
+[gd_scene load_steps=9 format=3 uid="uid://dtrhxtqg2n3qc"]
 
 [ext_resource type="Texture2D" uid="uid://dis86qd4117jm" path="res://Assets/Levels/Level2/parallax-00.png" id="1_sdmsx"]
 [ext_resource type="Texture2D" uid="uid://c7kl5idee671w" path="res://Assets/Levels/Level2/parallax-01.png" id="2_nsobv"]
 [ext_resource type="Texture2D" uid="uid://b4e75wg6ayenl" path="res://Assets/Levels/Level2/parallax-02.png" id="3_ytfsa"]
 [ext_resource type="Texture2D" uid="uid://cmj1c6p6casga" path="res://Assets/Levels/Level2/parallax-03.png" id="4_6r2ff"]
 [ext_resource type="Texture2D" uid="uid://cffrcmly1i2nv" path="res://Assets/Levels/Level2/parallax-04.png" id="5_ihmj1"]
+[ext_resource type="Texture2D" uid="uid://d3v5b7erodr88" path="res://Assets/Levels/Level2/parallax_ground.png" id="6_7huns"]
+[ext_resource type="Texture2D" uid="uid://mvutwnqs8aqc" path="res://Assets/Levels/Level2/parallax_ground_2.png" id="7_pgjnv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1tbvk"]
 
@@ -44,6 +46,27 @@ motion_mirroring = Vector2(1440, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax/Layer5"]
 texture = ExtResource("5_ihmj1")
+
+[node name="LayerGround" type="ParallaxLayer" parent="Parallax"]
+position = Vector2(-246, 0)
+motion_mirroring = Vector2(928, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax/LayerGround"]
+position = Vector2(-10, -157)
+texture = ExtResource("6_7huns")
+
+[node name="LayerGround2" type="ParallaxLayer" parent="Parallax"]
+position = Vector2(-257, 0)
+motion_mirroring = Vector2(928, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax/LayerGround2"]
+position = Vector2(0, -156)
+texture = ExtResource("7_pgjnv")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Parallax/LayerGround2"]
+position = Vector2(0, -130)
+texture = ExtResource("7_pgjnv")
+region_rect = Rect2(0, 1586, 0, 1856)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
