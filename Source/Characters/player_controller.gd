@@ -37,7 +37,7 @@ func _ready():
 
 func _physics_process(delta):
 	curr_state.set_input(get_input())
-	var maybe_new_state = curr_state.update()
+	var maybe_new_state = curr_state.update(delta)
 	if (maybe_new_state != ""):
 		change_state(maybe_new_state)
 
@@ -46,8 +46,7 @@ func _physics_process(delta):
 		set_facing(other_player.position.x < position.x)
 		
 	# determine movement based on state
-	move(delta)
-		
+	move(delta)		
 
 ########################################
 ############# Callbacks ################
@@ -98,7 +97,7 @@ func change_state(new_state_name: String):
 func take_hit():
 	change_state("take_hit")
 
-func set_facing(should_face_left: bool):
+func set_facing(should_face_left: bool):	
 	if (should_face_left and !curr_facing_left):
 		curr_facing_left = true
 		scale.x = scale.x * -1

@@ -14,8 +14,8 @@ func get_animation_name():
 func should_freeze_facing(): 
     return true
 
-func update() -> String:
-    super.update()
+func update(_delta) -> String:
+    super.update(_delta)
     if (animation_player.current_animation_position >= animation_length):
         return "block"
     return ""

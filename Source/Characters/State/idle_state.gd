@@ -11,8 +11,8 @@ func get_state_name():
 func get_animation_name():
     return animation_name
 
-func update() -> String:
-    super.update()    
+func update(_delta) -> String:
+    super.update(_delta)    
     
     if has_buffered_input("jump"):
         return "jump"

@@ -20,6 +20,13 @@ scale = Vector2(1.75, 1.75)
 position = Vector2(261, 56)
 scale = Vector2(1.75, 1.75)
 script = ExtResource("4_ufp3g")
+target_input_map = {
+"attack": false,
+"attack_special": false,
+"block": true,
+"direction": Vector2(0, 0),
+"jump": false
+}
 
 [node name="Level2" parent="." instance=ExtResource("5_ya2uy")]
 

@@ -13,8 +13,8 @@ func get_state_name():
 func get_animation_name():
 	return animation_name
 
-func update():
-	super.update()	
+func update(_delta):
+	super.update(_delta)	
 	if (animation_player.current_animation_position >= animation_length):
 		return "rising"
 	
