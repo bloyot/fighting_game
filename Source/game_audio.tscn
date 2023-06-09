@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://d4kh6r37uyap6"]
+
+[ext_resource type="Script" path="res://Source/game_audio.gd" id="1_6772s"]
+[ext_resource type="AudioStream" uid="uid://vtkr6b3e4ioq" path="res://Assets/Audio/Music/GameMusic.wav" id="1_kgwqk"]
+[ext_resource type="AudioStream" uid="uid://bickvr768xa3s" path="res://Assets/Audio/SFX/Block.wav" id="3_763la"]
+[ext_resource type="AudioStream" uid="uid://be6rdgrebwkah" path="res://Assets/Audio/SFX/Hit.wav" id="4_npccu"]
+[ext_resource type="AudioStream" uid="uid://cwsin1ajcdbt7" path="res://Assets/Audio/SFX/Attack.wav" id="5_2j0i0"]
+
+[node name="GameAudio" type="Node2D"]
+script = ExtResource("1_6772s")
+
+[node name="GameMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_kgwqk")
+volume_db = -16.736
+autoplay = true
+
+[node name="BlockSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_763la")
+volume_db = -10.0
+
+[node name="HitSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_npccu")
+volume_db = -7.214
+
+[node name="AttackSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_2j0i0")
+volume_db = -10.0

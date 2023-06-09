@@ -3,7 +3,9 @@ extends CharacterBody2D
 class_name PlayerController
 
 signal state_change(old_state: BaseCharacterState, new_state: BaseCharacterState)
+signal damage_taken(player: PlayerController, damage_taken: int)
 
+var game_audio: GameAudio
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 # track all states here for reference
@@ -21,6 +23,8 @@ var curr_facing_left: bool = false
 # store the camera lock information relevant to the player to determine if we need to lock the movement left/right
 # array[0] = is_left_locked, array[1] = is_right_locked 
 var camera_lock_state: Array = [false, false]
+# player health
+var health: int = 100
 
 ########################################
 ########## Engine Overrides ############
@@ -52,9 +56,13 @@ func _physics_process(delta):
 ############# Callbacks ################
 ########################################
 func _on_sword_hitbox_body_entered(body):
-	if (body == other_player && other_player.curr_state.get_state_name() != "block"):
-		other_player.take_hit()	
+	if (body != other_player):
+		return
 
+	if (other_player.curr_state.get_state_name() != "block"):		
+		other_player.on_hit(curr_state.get_damage())	
+	else:
+		on_hit_blocked()
 
 ########################################
 ########## Class Functions #############
@@ -94,8 +102,16 @@ func change_state(new_state_name: String):
 	curr_state = new_state		
 	state_change.emit(old_state, new_state)
 
-func take_hit():
+func on_hit(damage: int):	
 	change_state("take_hit")
+	curr_state.on_hit()
+	game_audio.hit()	
+	health -= damage
+	damage_taken.emit(self, damage)
+
+func on_hit_blocked():		
+	curr_state.on_hit_blocked()
+	game_audio.block()
 
 func set_facing(should_face_left: bool):	
 	if (should_face_left and !curr_facing_left):

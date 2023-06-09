@@ -1,16 +1,21 @@
-[gd_scene load_steps=7 format=3 uid="uid://4yqy5hqx3q5o"]
+[gd_scene load_steps=9 format=3 uid="uid://4yqy5hqx3q5o"]
 
 [ext_resource type="Script" path="res://Source/game.gd" id="1_jy8ap"]
 [ext_resource type="PackedScene" uid="uid://ygxngejhh6hc" path="res://Source/UI/debug_ui.tscn" id="2_w3e7m"]
 [ext_resource type="PackedScene" uid="uid://dseanuadidjfx" path="res://Source/Characters/FireKnight/fire_knight.tscn" id="3_hc1mj"]
+[ext_resource type="PackedScene" uid="uid://c05mlav2iwcyn" path="res://Source/UI/game_ui.tscn" id="4_mgi5j"]
 [ext_resource type="Script" path="res://Source/Characters/dummy_controller.gd" id="4_ufp3g"]
 [ext_resource type="PackedScene" uid="uid://dtrhxtqg2n3qc" path="res://Source/Levels/level_2.tscn" id="5_ya2uy"]
 [ext_resource type="Script" path="res://Source/camera.gd" id="6_p6jvm"]
+[ext_resource type="PackedScene" uid="uid://d4kh6r37uyap6" path="res://Source/game_audio.tscn" id="7_mt6fe"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_jy8ap")
 
+[node name="GameUI" parent="." instance=ExtResource("4_mgi5j")]
+
 [node name="DebugUI" parent="." instance=ExtResource("2_w3e7m")]
+visible = false
 
 [node name="Player1" parent="." instance=ExtResource("3_hc1mj")]
 position = Vector2(56, 53)
@@ -38,4 +43,12 @@ script = ExtResource("6_p6jvm")
 min_x = -1000
 max_x = 1000
 
+[node name="GameAudio" parent="." instance=ExtResource("7_mt6fe")]
+position = Vector2(261, 56)
+scale = Vector2(1.75, 1.75)
+
+[connection signal="damage_taken" from="Player1" to="." method="_on_player_damage_taken"]
+[connection signal="damage_taken" from="Player1" to="GameUI" method="_on_player_damage_taken"]
 [connection signal="state_change" from="Player1" to="DebugUI" method="_on_character_state_change"]
+[connection signal="damage_taken" from="Player2" to="." method="_on_player_damage_taken"]
+[connection signal="damage_taken" from="Player2" to="GameUI" method="_on_player_damage_taken"]

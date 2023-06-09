@@ -28,11 +28,20 @@ func get_animation_name() -> String:
 func update(_delta) -> String:				
 	return ""
 
+func get_damage() -> int:
+	return 0
+
 func on_enter():	
 	character.freeze_facing = should_freeze_facing()
-	animation_player.play(get_animation_name())	
+	animation_player.play(get_animation_name())		
 
 func on_exit():
+	pass
+
+func on_hit_blocked():
+	pass
+
+func on_hit():
 	pass
 
 # core functions
