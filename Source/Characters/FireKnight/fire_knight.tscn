@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://dseanuadidjfx"]
+[gd_scene load_steps=46 format=3 uid="uid://dseanuadidjfx"]
 
 [ext_resource type="Texture2D" uid="uid://mrgiw7vmhebh" path="res://Assets/Characters/FireKnight/fire_knight_spritesheet.png" id="1_4bwuy"]
 [ext_resource type="Script" path="res://Source/Characters/player_controller.gd" id="1_g446k"]
@@ -19,6 +19,9 @@
 [ext_resource type="Script" path="res://Source/Characters/State/attack_special_state.gd" id="14_gsk31"]
 [ext_resource type="Script" path="res://Source/Characters/State/take_hit_state.gd" id="18_xgkwb"]
 [ext_resource type="Script" path="res://Source/Characters/hitbox.gd" id="19_52ibn"]
+[ext_resource type="Script" path="res://Source/Characters/State/die_state.gd" id="19_y80ae"]
+[ext_resource type="Script" path="res://Source/Characters/CharacterAudio.gd" id="21_t5nid"]
+[ext_resource type="AudioStream" uid="uid://ca57pynh8btgf" path="res://Assets/Audio/SFX/KnightDie.wav" id="22_6heku"]
 
 [sub_resource type="Animation" id="Animation_wkjpn"]
 length = 0.001
@@ -931,6 +934,9 @@ script = ExtResource("14_fej3d")
 [node name="TakeHitState" type="Node2D" parent="States" groups=["states"]]
 script = ExtResource("18_xgkwb")
 
+[node name="DieState" type="Node2D" parent="States" groups=["states"]]
+script = ExtResource("19_y80ae")
+
 [node name="Hitbox" type="Area2D" parent="." groups=["hitbox"]]
 position = Vector2(53, 45)
 scale = Vector2(-0.78959, -0.552036)
@@ -940,5 +946,11 @@ script = ExtResource("19_52ibn")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(67.1235, -5.43444)
 shape = SubResource("RectangleShape2D_sea7p")
+
+[node name="CharacterAudio" type="Node2D" parent="."]
+script = ExtResource("21_t5nid")
+
+[node name="Die" type="AudioStreamPlayer2D" parent="CharacterAudio"]
+stream = ExtResource("22_6heku")
 
 [connection signal="body_entered" from="Hitbox" to="." method="_on_sword_hitbox_body_entered"]

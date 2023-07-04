@@ -10,4 +10,3 @@ func block():
 
 func attack():
 	$AttackSFX.play()
-

@@ -5,6 +5,7 @@ class_name PlayerController
 signal state_change(old_state: BaseCharacterState, new_state: BaseCharacterState)
 signal damage_taken(player: PlayerController, damage_taken: int)
 
+# Plays non character specific sounds like music and hit/block
 var game_audio: GameAudio
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -121,3 +122,7 @@ func set_facing(should_face_left: bool):
 	if (!should_face_left and curr_facing_left):
 		curr_facing_left = false
 		scale.x = scale.x * -1		
+
+func die():
+	change_state("die")
+	$CharacterAudio.die()

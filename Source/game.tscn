@@ -28,7 +28,7 @@ script = ExtResource("4_ufp3g")
 target_input_map = {
 "attack": false,
 "attack_special": false,
-"block": true,
+"block": false,
 "direction": Vector2(0, 0),
 "jump": false
 }
@@ -47,8 +47,11 @@ max_x = 1000
 position = Vector2(261, 56)
 scale = Vector2(1.75, 1.75)
 
+[node name="RoundTimer" type="Timer" parent="."]
+
 [connection signal="damage_taken" from="Player1" to="." method="_on_player_damage_taken"]
 [connection signal="damage_taken" from="Player1" to="GameUI" method="_on_player_damage_taken"]
 [connection signal="state_change" from="Player1" to="DebugUI" method="_on_character_state_change"]
 [connection signal="damage_taken" from="Player2" to="." method="_on_player_damage_taken"]
 [connection signal="damage_taken" from="Player2" to="GameUI" method="_on_player_damage_taken"]
+[connection signal="timeout" from="RoundTimer" to="." method="_on_round_timer_timeout"]
