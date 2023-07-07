@@ -5,6 +5,8 @@ class_name PlayerController
 signal state_change(old_state: BaseCharacterState, new_state: BaseCharacterState)
 signal damage_taken(player: PlayerController, damage_taken: int)
 
+@export var player_color: Color
+
 # Plays non character specific sounds like music and hit/block
 var game_audio: GameAudio
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -49,6 +51,9 @@ func _ready():
 	curr_state = states["idle"]
 	change_state("idle")
 
+	$PlayerIDLabel.text = name
+	$PlayerIDLabel.add_theme_color_override("font_color", player_color)
+	
 func _physics_process(delta):
 	curr_state.set_input(get_input())
 	var maybe_new_state = curr_state.update(delta)
@@ -128,11 +133,16 @@ func on_hit_blocked():
 func set_facing(should_face_left: bool):	
 	if (should_face_left and !curr_facing_left):
 		curr_facing_left = true
-		scale.x = scale.x * -1
+		flip_facing()
 
 	if (!should_face_left and curr_facing_left):
 		curr_facing_left = false
-		scale.x = scale.x * -1		
+		flip_facing()
+
+func flip_facing():
+	scale.x = scale.x * -1
+	$PlayerIDLabel.scale.x *= -1
+	$PlayerIDLabel.position.x *= -1
 
 func die():
 	change_state("die")

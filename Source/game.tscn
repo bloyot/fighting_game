@@ -20,10 +20,12 @@ visible = false
 [node name="Player1" parent="." instance=ExtResource("3_hc1mj")]
 position = Vector2(56, 53)
 scale = Vector2(1.75, 1.75)
+player_color = Color(0.760784, 0.215686, 0.141176, 1)
 
 [node name="Player2" parent="." instance=ExtResource("3_hc1mj")]
 position = Vector2(261, 56)
 scale = Vector2(1.75, 1.75)
+player_color = Color(0.337255, 0.501961, 0.894118, 1)
 
 [node name="Level2" parent="." instance=ExtResource("5_ya2uy")]
 

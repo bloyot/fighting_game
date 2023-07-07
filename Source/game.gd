@@ -22,10 +22,10 @@ func _ready():
 	# register the controller devices and associate the ids with the players
 	# player 1 always gets the first device + keyboard
 	# player 2 get the second device
-	$RoundStartTimer.start()
-	for device_id in Input.get_connected_joypads():
-		$DeviceInput.initialize(device_id)
+	$RoundStartTimer.start()	
 		
+	$DeviceInput.initialize(0)
+	$DeviceInput.initialize(1)
 	# use 100 for keyboard
 	$DeviceInput.initialize(100)
 	$Player1.device_id = 0

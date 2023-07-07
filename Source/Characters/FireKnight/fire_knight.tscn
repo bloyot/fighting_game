@@ -953,4 +953,20 @@ script = ExtResource("21_t5nid")
 [node name="Die" type="AudioStreamPlayer2D" parent="CharacterAudio"]
 stream = ExtResource("22_6heku")
 
+[node name="PlayerIDLabel" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -11.0
+offset_right = 51.0
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.4, 0.4)
+text = "Player 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="body_entered" from="Hitbox" to="." method="_on_sword_hitbox_body_entered"]
