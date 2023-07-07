@@ -24,13 +24,20 @@ var curr_facing_left: bool = false
 # store the camera lock information relevant to the player to determine if we need to lock the movement left/right
 # array[0] = is_left_locked, array[1] = is_right_locked 
 var camera_lock_state: Array = [false, false]
+var max_health: int = 100
 # player health
-var health: int = 100
+var health: int
+# set our starting position so we can reset to it
+var starting_position: Vector2
+# are we waiting for control for some reason
+var input_wait = true
 
 ########################################
 ########## Engine Overrides ############
 ########################################
 func _ready():
+	starting_position = position
+	health = max_health
 	# setup the states
 	var states_group = $States.get_children()	
 	for state in states_group:
@@ -83,6 +90,8 @@ func move(delta: float):
 	move_and_slide()
 
 func get_input(): 	
+	if input_wait:
+		return {}
 	return {
 		"direction": Input.get_axis("move_left", "move_right"),
 		"attack": Input.is_action_just_pressed("attack"),
@@ -126,3 +135,8 @@ func set_facing(should_face_left: bool):
 func die():
 	change_state("die")
 	$CharacterAudio.die()
+
+func reset():
+	position = starting_position
+	health = max_health
+	change_state("idle")

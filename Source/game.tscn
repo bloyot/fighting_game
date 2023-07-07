@@ -49,9 +49,17 @@ scale = Vector2(1.75, 1.75)
 
 [node name="RoundTimer" type="Timer" parent="."]
 
+[node name="RoundResetTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="RoundStartTimer" type="Timer" parent="."]
+
 [connection signal="damage_taken" from="Player1" to="." method="_on_player_damage_taken"]
 [connection signal="damage_taken" from="Player1" to="GameUI" method="_on_player_damage_taken"]
 [connection signal="state_change" from="Player1" to="DebugUI" method="_on_character_state_change"]
 [connection signal="damage_taken" from="Player2" to="." method="_on_player_damage_taken"]
 [connection signal="damage_taken" from="Player2" to="GameUI" method="_on_player_damage_taken"]
 [connection signal="timeout" from="RoundTimer" to="." method="_on_round_timer_timeout"]
+[connection signal="timeout" from="RoundResetTimer" to="." method="_on_round_reset_timer_timeout"]
+[connection signal="timeout" from="RoundStartTimer" to="." method="_on_round_start_timer_timeout"]
