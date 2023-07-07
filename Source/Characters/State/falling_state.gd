@@ -16,7 +16,7 @@ func update(_delta):
     if (character.is_on_floor()):        
         return "landing"
 
-    if (has_buffered_input("attack")):        
+    if has_buffered_input("attack") and not character.air_attack_cooldown:        
         return "air_attack"
 
     move_left_right() 

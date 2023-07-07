@@ -16,7 +16,7 @@ func update(_delta):
     if (character.velocity.y >= 0):
         return "falling"
 
-    if has_buffered_input("attack"):
+    if has_buffered_input("attack") and not character.air_attack_cooldown:
         return "air_attack"
 
     move_left_right() 

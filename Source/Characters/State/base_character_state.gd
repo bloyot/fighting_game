@@ -25,7 +25,7 @@ func get_animation_name() -> String:
 	return ""
 
 ### Base class functions
-func update(_delta) -> String:				
+func update(_delta) -> String:					
 	return ""
 
 func get_damage() -> int:

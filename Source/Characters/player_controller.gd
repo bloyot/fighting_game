@@ -35,6 +35,8 @@ var starting_position: Vector2
 var input_wait = true
 # which controller device this player is listening too
 var device_id: int
+# is our attack on cooldown
+var air_attack_cooldown: bool = false
 
 ########################################
 ########## Engine Overrides ############

@@ -13,6 +13,7 @@ func get_animation_name():
 
 func update(_delta):    
     super.update(_delta)
+    character.air_attack_cooldown = false
     if (animation_player.current_animation_position >= animation_length):
         return "idle"	
 

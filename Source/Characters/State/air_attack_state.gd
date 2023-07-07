@@ -16,6 +16,7 @@ func should_freeze_facing():
 
 func update(_delta) -> String:
     super.update(_delta)    
+    character.air_attack_cooldown = true
     if (animation_player.current_animation_position >= animation_length):
         return "falling"	
 
