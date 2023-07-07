@@ -18,7 +18,21 @@ func _ready():
 	$Camera2D.player_2 = $Player2
 
 	curr_round_time = round_time	
+
+	# register the controller devices and associate the ids with the players
+	# player 1 always gets the first device + keyboard
+	# player 2 get the second device
 	$RoundStartTimer.start()
+	for device_id in Input.get_connected_joypads():
+		$DeviceInput.initialize(device_id)
+		
+	# use 100 for keyboard
+	$DeviceInput.initialize(100)
+	$Player1.device_id = 0
+	$Player2.device_id = 1
+
+	# setup a notification for game pad changed
+	Input.joy_connection_changed.connect(_on_input_joypad_connection_changed)
 
 func _on_player_damage_taken(player: PlayerController, _damage_taken: int):	
 	if (player.health <= 0):
@@ -50,6 +64,12 @@ func _on_round_reset_timer_timeout():
 	$GameUI.reset()
 	pre_round_time = 4
 	$RoundStartTimer.start()
+
+func _on_input_joypad_connection_changed(device: int, connected: bool):
+	# don't worry about disconnecting now for the sake of this prototype
+	if (connected):
+		$DeviceInput.initialize(device)
+
 
 func start_round():	
 	$Player1.input_wait = false

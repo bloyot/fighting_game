@@ -31,6 +31,8 @@ var health: int
 var starting_position: Vector2
 # are we waiting for control for some reason
 var input_wait = true
+# which controller device this player is listening too
+var device_id: int
 
 ########################################
 ########## Engine Overrides ############
@@ -93,11 +95,11 @@ func get_input():
 	if input_wait:
 		return {}
 	return {
-		"direction": Input.get_axis("move_left", "move_right"),
-		"attack": Input.is_action_just_pressed("attack"),
-		"attack_special": Input.is_action_pressed("attack_special"),
-		"jump": Input.is_action_just_pressed("jump"),
-		"block": Input.is_action_pressed("block"),
+		"direction": get_axis("move_left", "move_right"),
+		"attack": get_input_just_pressed("attack"),
+		"attack_special": get_input_pressed("attack_special"),
+		"jump": get_input_just_pressed("jump"),
+		"block": get_input_pressed("block"),
 	}
 
 func change_state(new_state_name: String):
@@ -140,3 +142,32 @@ func reset():
 	position = starting_position
 	health = max_health
 	change_state("idle")
+
+# modify the input to account for our specific device id
+func input_name(input: String, id: int):
+	return input + "_device_" + str(id)	
+
+func get_axis(input_left: String, input_right: String):
+	if (device_id == 0):
+		var keyboard_input = Input.get_axis(input_name(input_left, 100), input_name(input_right, 100))
+		var controller_input = Input.get_axis(input_name(input_left, device_id), input_name(input_right, device_id))
+		return keyboard_input if keyboard_input != 0.0 else controller_input		
+	else:
+		return Input.get_axis(input_name(input_left, device_id), input_name(input_right, device_id))
+
+func get_input_pressed(input: String):
+	if (device_id == 0):		
+		var keyboard_input = Input.is_action_pressed(input_name(input, 100))
+		var controller_input = Input.is_action_pressed(input_name(input, device_id))
+		return keyboard_input if keyboard_input else controller_input
+	else:
+		return Input.is_action_pressed(input_name(input, device_id))
+
+# could probably find a way to consolidate this with input pressed, but it's not terrible
+func get_input_just_pressed(input: String):
+	if (device_id == 0):
+		var keyboard_input = Input.is_action_just_pressed(input_name(input, 100))
+		var controller_input = Input.is_action_just_pressed(input_name(input, device_id))
+		return keyboard_input if keyboard_input else controller_input
+	else:
+		return Input.is_action_just_pressed(input_name(input, device_id))
