@@ -86,6 +86,7 @@ func _on_sword_hitbox_body_entered(body):
 		other_player.on_hit(curr_state.get_damage())	
 	else:
 		on_hit_blocked()
+		other_player.on_blocked_hit()
 
 ########################################
 ########## Class Functions #############
@@ -134,9 +135,16 @@ func on_hit(damage: int):
 	health -= damage
 	damage_taken.emit(self, damage)
 
+# our hit was blocked by the other player
 func on_hit_blocked():		
 	curr_state.on_hit_blocked()
 	game_audio.block()
+
+# we blocked a hit from the other player
+func on_blocked_hit():
+	# decrease stamina on block
+	stamina = clamp(stamina - 20, 0, 100)
+	stamina_changed.emit(self, stamina)
 
 func set_facing(should_face_left: bool):	
 	if (should_face_left and !curr_facing_left):

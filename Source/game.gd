@@ -91,21 +91,6 @@ func round_end(winner):
 func is_match_complete():
 	return true if player1_score == 2 or player2_score == 2 else false
 
-func _on_player_block(player: PlayerController):	
-	if (player.health <= 0):
-		# tell player controller to die
-		player.die()
-		
-		var winner
-		if (player.name == "Player1"):
-			winner = $Player2
-			player2_score += 1			
-		else:
-			winner = $Player1
-			player1_score += 1
-		
-		round_end(winner)	
-
 func _on_player_stamina_changed(player: PlayerController, stamina: float):
 	if (player.name == "Player1"):
 		$GameUI/Player1StaminaBar/Stamina.value = stamina	
