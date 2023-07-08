@@ -21,11 +21,15 @@ visible = false
 position = Vector2(56, 53)
 scale = Vector2(1.75, 1.75)
 player_color = Color(0.760784, 0.215686, 0.141176, 1)
+recharge_rate = 10.0
+drain_rate = 20.0
 
 [node name="Player2" parent="." instance=ExtResource("3_hc1mj")]
 position = Vector2(261, 56)
 scale = Vector2(1.75, 1.75)
 player_color = Color(0.337255, 0.501961, 0.894118, 1)
+recharge_rate = 10.0
+drain_rate = 20.0
 
 [node name="Level2" parent="." instance=ExtResource("5_ya2uy")]
 
@@ -54,9 +58,11 @@ script = ExtResource("9_4r6jt")
 
 [connection signal="damage_taken" from="Player1" to="." method="_on_player_damage_taken"]
 [connection signal="damage_taken" from="Player1" to="GameUI" method="_on_player_damage_taken"]
+[connection signal="stamina_changed" from="Player1" to="." method="_on_player_stamina_changed"]
 [connection signal="state_change" from="Player1" to="DebugUI" method="_on_character_state_change"]
 [connection signal="damage_taken" from="Player2" to="." method="_on_player_damage_taken"]
 [connection signal="damage_taken" from="Player2" to="GameUI" method="_on_player_damage_taken"]
+[connection signal="stamina_changed" from="Player2" to="." method="_on_player_stamina_changed"]
 [connection signal="timeout" from="RoundTimer" to="." method="_on_round_timer_timeout"]
 [connection signal="timeout" from="RoundResetTimer" to="." method="_on_round_reset_timer_timeout"]
 [connection signal="timeout" from="RoundStartTimer" to="." method="_on_round_start_timer_timeout"]

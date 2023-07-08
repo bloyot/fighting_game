@@ -24,7 +24,7 @@ func update(delta) -> String:
 	if has_buffered_input("attack_special"):
 		return "attack_special"
 
-	if has_buffered_input("block"):
+	if block():
 		return "block_start"
 
 	move_left_right() 

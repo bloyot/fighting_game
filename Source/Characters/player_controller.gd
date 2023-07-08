@@ -4,8 +4,11 @@ class_name PlayerController
 
 signal state_change(old_state: BaseCharacterState, new_state: BaseCharacterState)
 signal damage_taken(player: PlayerController, damage_taken: int)
+signal stamina_changed(player: PlayerController, stamina: float)
 
 @export var player_color: Color
+@export var recharge_rate: float = 1
+@export var drain_rate: float = 1
 
 # Plays non character specific sounds like music and hit/block
 var game_audio: GameAudio
@@ -37,7 +40,8 @@ var input_wait = true
 var device_id: int
 # is our attack on cooldown
 var air_attack_cooldown: bool = false
-
+# how much stamina is left on our block bar
+var stamina: float = 100
 ########################################
 ########## Engine Overrides ############
 ########################################
@@ -66,6 +70,8 @@ func _physics_process(delta):
 	if (!freeze_facing):
 		set_facing(other_player.position.x < position.x)
 		
+	update_stamina(delta)
+	print(stamina)
 	# determine movement based on state
 	move(delta)		
 
@@ -183,3 +189,11 @@ func get_input_just_pressed(input: String):
 		return keyboard_input if keyboard_input else controller_input
 	else:
 		return Input.is_action_just_pressed(input_name(input, device_id))
+
+func update_stamina(delta):	
+	if curr_state.state_name == "block" and stamina > 0:
+		stamina -= (drain_rate * delta)
+		stamina_changed.emit(self, stamina)
+	if curr_state.state_name != "block" and stamina < 100:
+		stamina += (recharge_rate * delta)
+		stamina_changed.emit(self, stamina)

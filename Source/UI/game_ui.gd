@@ -49,4 +49,3 @@ func set_pre_round_time(pre_round_time):
 		$RoundStartMessage.hide()
 
 	$RoundStartMessage.text = text
-		

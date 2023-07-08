@@ -20,7 +20,7 @@ func update(_delta):
     if has_buffered_input("direction"):        
         return "run"
 
-    if has_buffered_input("block"):
+    if block():
         return "block_start"
 
     if has_buffered_input("jump"):

@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://c05mlav2iwcyn"]
+[gd_scene load_steps=6 format=3 uid="uid://c05mlav2iwcyn"]
 
 [ext_resource type="PackedScene" uid="uid://b7bp01h3ukmvl" path="res://Source/UI/health_bar.tscn" id="1_c5g2f"]
 [ext_resource type="Script" path="res://Source/UI/game_ui.gd" id="1_iqcp7"]
 [ext_resource type="PackedScene" uid="uid://lh4sriyf8oyw" path="res://Source/UI/round_timer.tscn" id="3_k7voe"]
 [ext_resource type="PackedScene" uid="uid://cxu0po5gqtrjb" path="res://Source/UI/round_score.tscn" id="3_w2kci"]
+[ext_resource type="PackedScene" uid="uid://6tlpowwep7yo" path="res://Source/UI/stamina_bar.tscn" id="5_p0nsu"]
 
 [node name="GameUI" type="CanvasLayer"]
 script = ExtResource("1_iqcp7")
@@ -72,3 +73,16 @@ grow_vertical = 2
 text = "3"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Player1StaminaBar" parent="." instance=ExtResource("5_p0nsu")]
+offset_left = 41.0
+offset_top = 39.0
+offset_right = 119.0
+offset_bottom = 79.0
+
+[node name="Player2StaminaBar" parent="." instance=ExtResource("5_p0nsu")]
+offset_left = 600.0
+offset_top = 82.0
+offset_right = 678.0
+offset_bottom = 122.0
+scale = Vector2(-1, -1)

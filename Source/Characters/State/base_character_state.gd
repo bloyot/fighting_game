@@ -67,3 +67,6 @@ func has_buffered_input(input: String, frames_back: int = 1) -> bool:
 		if (frame.has(input) and frame[input]):
 			return true
 	return false
+
+func block():
+	return has_buffered_input("block") && character.stamina > 5

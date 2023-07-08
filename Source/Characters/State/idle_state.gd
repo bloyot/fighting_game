@@ -17,7 +17,7 @@ func update(_delta) -> String:
     if has_buffered_input("jump"):
         return "jump"
 
-    if has_buffered_input("block"):
+    if block():
         return "block_start"
 
     if has_buffered_input("attack"):
