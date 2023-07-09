@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://c05mlav2iwcyn"]
+[gd_scene load_steps=7 format=3 uid="uid://c05mlav2iwcyn"]
 
 [ext_resource type="PackedScene" uid="uid://b7bp01h3ukmvl" path="res://Source/UI/health_bar.tscn" id="1_c5g2f"]
 [ext_resource type="Script" path="res://Source/UI/game_ui.gd" id="1_iqcp7"]
 [ext_resource type="PackedScene" uid="uid://lh4sriyf8oyw" path="res://Source/UI/round_timer.tscn" id="3_k7voe"]
 [ext_resource type="PackedScene" uid="uid://cxu0po5gqtrjb" path="res://Source/UI/round_score.tscn" id="3_w2kci"]
 [ext_resource type="PackedScene" uid="uid://6tlpowwep7yo" path="res://Source/UI/stamina_bar.tscn" id="5_p0nsu"]
+[ext_resource type="PackedScene" uid="uid://cvusfkful8kk3" path="res://Source/UI/Menu/pause_menu.tscn" id="6_6236u"]
 
 [node name="GameUI" type="CanvasLayer"]
 script = ExtResource("1_iqcp7")
@@ -86,3 +87,6 @@ offset_top = 82.0
 offset_right = 678.0
 offset_bottom = 122.0
 scale = Vector2(-1, -1)
+
+[node name="PauseMenu" parent="." instance=ExtResource("6_6236u")]
+position = Vector2(277, 222)

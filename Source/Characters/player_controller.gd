@@ -71,7 +71,7 @@ func _physics_process(delta):
 		set_facing(other_player.position.x < position.x)
 		
 	update_stamina(delta)
-	print(stamina)
+		
 	# determine movement based on state
 	move(delta)		
 

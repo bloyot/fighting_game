@@ -34,6 +34,14 @@ func _ready():
 	# setup a notification for game pad changed
 	Input.joy_connection_changed.connect(_on_input_joypad_connection_changed)
 
+func _process(_delta):
+	# toggle the pause state and tell the game ui we are paused
+	# game ui is responsible for unpausing us
+	if Input.is_action_pressed("pause"):				
+		get_tree().paused = true
+		$GameUI.pause()
+
+
 func _on_player_damage_taken(player: PlayerController, _damage_taken: int):	
 	if (player.health <= 0):
 		# tell player controller to die
