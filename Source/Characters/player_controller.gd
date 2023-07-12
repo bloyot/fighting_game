@@ -6,7 +6,6 @@ signal state_change(old_state: BaseCharacterState, new_state: BaseCharacterState
 signal damage_taken(player: PlayerController, damage_taken: int)
 signal stamina_changed(player: PlayerController, stamina: float)
 
-@export var player_color: Color
 @export var recharge_rate: float = 1
 @export var drain_rate: float = 1
 
@@ -42,6 +41,9 @@ var device_id: int
 var air_attack_cooldown: bool = false
 # how much stamina is left on our block bar
 var stamina: float = 100
+# the players color for text display
+var player_color = Color.BLACK
+
 ########################################
 ########## Engine Overrides ############
 ########################################
@@ -66,9 +68,8 @@ func _physics_process(delta):
 	if (maybe_new_state != ""):
 		change_state(maybe_new_state)
 
-	# determine facing based on where the opposing character is relative to us		
-	if (!freeze_facing):
-		set_facing(other_player.position.x < position.x)
+	# determine facing based on where the opposing character is relative to us			
+	set_facing()
 		
 	update_stamina(delta)
 		
@@ -146,7 +147,11 @@ func on_blocked_hit():
 	stamina = clamp(stamina - 20, 0, 100)
 	stamina_changed.emit(self, stamina)
 
-func set_facing(should_face_left: bool):	
+func set_facing():		
+	if (freeze_facing):
+		return
+
+	var should_face_left = other_player.position.x < position.x
 	if (should_face_left and !curr_facing_left):
 		curr_facing_left = true
 		flip_facing()

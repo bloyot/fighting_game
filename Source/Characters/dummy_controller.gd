@@ -1,9 +1,8 @@
 extends PlayerController
 # dummy controller that just stands around and takes no input, for testing/training purposes
 
-func _ready():
-	super._ready()
-	set_facing(true)
+# lock the facing in one direction
+@export var lock_facing: = false
 
 # allow input to be set for training/testing
 @export var target_input_map: Dictionary = {
@@ -17,3 +16,8 @@ func _ready():
 # hardcode input to none
 func get_input(): 	
 	return target_input_map
+
+
+func set_facing():	
+	if (!lock_facing):
+		super.set_facing()

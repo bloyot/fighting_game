@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://4yqy5hqx3q5o"]
+[gd_scene load_steps=10 format=3 uid="uid://4yqy5hqx3q5o"]
 
 [ext_resource type="Script" path="res://Source/game.gd" id="1_jy8ap"]
 [ext_resource type="PackedScene" uid="uid://ygxngejhh6hc" path="res://Source/UI/debug_ui.tscn" id="2_w3e7m"]
+[ext_resource type="Script" path="res://Source/Characters/dummy_controller.gd" id="2_yjpwe"]
 [ext_resource type="PackedScene" uid="uid://dseanuadidjfx" path="res://Source/Characters/FireKnight/fire_knight.tscn" id="3_hc1mj"]
 [ext_resource type="PackedScene" uid="uid://c05mlav2iwcyn" path="res://Source/UI/game_ui.tscn" id="4_mgi5j"]
 [ext_resource type="PackedScene" uid="uid://dtrhxtqg2n3qc" path="res://Source/Levels/level_2.tscn" id="5_ya2uy"]
@@ -11,25 +12,15 @@
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_jy8ap")
+dummy_player_controller_script = ExtResource("2_yjpwe")
+player_scene = ExtResource("3_hc1mj")
+player1_color = Color(0.639216, 0.203922, 0.160784, 1)
+player2_color = Color(0.172549, 0.298039, 0.745098, 1)
 
 [node name="GameUI" parent="." instance=ExtResource("4_mgi5j")]
 
 [node name="DebugUI" parent="." instance=ExtResource("2_w3e7m")]
 visible = false
-
-[node name="Player1" parent="." instance=ExtResource("3_hc1mj")]
-position = Vector2(56, 53)
-scale = Vector2(1.75, 1.75)
-player_color = Color(0.760784, 0.215686, 0.141176, 1)
-recharge_rate = 10.0
-drain_rate = 20.0
-
-[node name="Player2" parent="." instance=ExtResource("3_hc1mj")]
-position = Vector2(261, 56)
-scale = Vector2(1.75, 1.75)
-player_color = Color(0.337255, 0.501961, 0.894118, 1)
-recharge_rate = 10.0
-drain_rate = 20.0
 
 [node name="Level2" parent="." instance=ExtResource("5_ya2uy")]
 
@@ -56,13 +47,6 @@ one_shot = true
 [node name="DeviceInput" type="Node" parent="."]
 script = ExtResource("9_4r6jt")
 
-[connection signal="damage_taken" from="Player1" to="." method="_on_player_damage_taken"]
-[connection signal="damage_taken" from="Player1" to="GameUI" method="_on_player_damage_taken"]
-[connection signal="stamina_changed" from="Player1" to="." method="_on_player_stamina_changed"]
-[connection signal="state_change" from="Player1" to="DebugUI" method="_on_character_state_change"]
-[connection signal="damage_taken" from="Player2" to="." method="_on_player_damage_taken"]
-[connection signal="damage_taken" from="Player2" to="GameUI" method="_on_player_damage_taken"]
-[connection signal="stamina_changed" from="Player2" to="." method="_on_player_stamina_changed"]
 [connection signal="timeout" from="RoundTimer" to="." method="_on_round_timer_timeout"]
 [connection signal="timeout" from="RoundResetTimer" to="." method="_on_round_reset_timer_timeout"]
 [connection signal="timeout" from="RoundStartTimer" to="." method="_on_round_start_timer_timeout"]

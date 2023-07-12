@@ -1,0 +1,117 @@
+[gd_scene load_steps=9 format=3 uid="uid://crov2naneeoar"]
+
+[ext_resource type="Script" path="res://Source/UI/Menu/main_menu.gd" id="1_0rdqw"]
+[ext_resource type="Texture2D" uid="uid://opskjr8otvdm" path="res://Assets/Backgrounds/MainMenuBackground.png" id="1_c7yex"]
+[ext_resource type="PackedScene" uid="uid://4yqy5hqx3q5o" path="res://Source/game.tscn" id="2_6y56k"]
+[ext_resource type="PackedScene" uid="uid://dseanuadidjfx" path="res://Source/Characters/FireKnight/fire_knight.tscn" id="2_b3utw"]
+[ext_resource type="Script" path="res://Source/Characters/dummy_controller.gd" id="3_42x7i"]
+[ext_resource type="PackedScene" uid="uid://dl0jrxyb6mr2g" path="res://Source/UI/Menu/menu_button.tscn" id="5_r6aig"]
+[ext_resource type="AudioStream" uid="uid://2f65e7k4yglf" path="res://Assets/Audio/Music/MenuMusic.wav" id="7_6b4tx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qgngr"]
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_0rdqw")
+game_scene = ExtResource("2_6y56k")
+
+[node name="Background" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -92.0
+offset_top = -5.0
+offset_right = 1828.0
+offset_bottom = 1075.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.45, 0.45)
+texture = ExtResource("1_c7yex")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(167, 459)
+scale = Vector2(62.3425, -1.43677)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_qgngr")
+
+[node name="FireKnight" parent="." instance=ExtResource("2_b3utw")]
+position = Vector2(100, 305)
+scale = Vector2(2, 2)
+script = ExtResource("3_42x7i")
+lock_facing = true
+target_input_map = {
+"attack": false,
+"attack_special": false,
+"block": false,
+"direction": Vector2(0, 0),
+"jump": false
+}
+
+[node name="FireKnight2" parent="." instance=ExtResource("2_b3utw")]
+position = Vector2(541, 305)
+scale = Vector2(-2, 2)
+script = ExtResource("3_42x7i")
+lock_facing = true
+target_input_map = {
+"attack": false,
+"attack_special": false,
+"block": false,
+"direction": Vector2(0, 0),
+"jump": false
+}
+
+[node name="Title" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 147.0
+offset_top = 50.0
+offset_right = 507.0
+offset_bottom = 120.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 48
+text = "PUT TITLE HERE"
+
+[node name="MainMenuOptions" type="MarginContainer" parent="."]
+offset_left = 267.0
+offset_top = 214.0
+offset_right = 426.0
+offset_bottom = 340.0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenuOptions"]
+layout_mode = 2
+
+[node name="VSHuman" parent="MainMenuOptions/VBoxContainer" instance=ExtResource("5_r6aig")]
+layout_mode = 2
+text = "Play vs Human"
+
+[node name="VSComputer" parent="MainMenuOptions/VBoxContainer" instance=ExtResource("5_r6aig")]
+layout_mode = 2
+text = "Play vs Computer"
+
+[node name="Controls" parent="MainMenuOptions/VBoxContainer" instance=ExtResource("5_r6aig")]
+layout_mode = 2
+text = "Controls"
+
+[node name="Credits" parent="MainMenuOptions/VBoxContainer" instance=ExtResource("5_r6aig")]
+layout_mode = 2
+text = "Credits"
+
+[node name="Quit" parent="MainMenuOptions/VBoxContainer" instance=ExtResource("5_r6aig")]
+layout_mode = 2
+text = "Quit"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_6b4tx")
+volume_db = -9.318
+autoplay = true
+
+[connection signal="pressed" from="MainMenuOptions/VBoxContainer/VSHuman" to="." method="_on_vs_human_pressed"]
+[connection signal="pressed" from="MainMenuOptions/VBoxContainer/VSComputer" to="." method="_on_vs_computer_pressed"]
+[connection signal="pressed" from="MainMenuOptions/VBoxContainer/Controls" to="." method="_on_controls_pressed"]
+[connection signal="pressed" from="MainMenuOptions/VBoxContainer/Credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="MainMenuOptions/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

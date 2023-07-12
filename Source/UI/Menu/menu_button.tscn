@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://dl0jrxyb6mr2g"]
+
+[ext_resource type="Theme" uid="uid://dvxnb8l6vf6uj" path="res://Assets/UI/Themes/default_theme.tres" id="1_rvmyc"]
+[ext_resource type="Script" path="res://Source/UI/Menu/menu_button.gd" id="2_0go2l"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s2k8c"]
+
+[node name="MenuButton" type="Button"]
+offset_right = 8.0
+offset_bottom = 8.0
+theme = ExtResource("1_rvmyc")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_s2k8c")
+text = "Placeholder"
+alignment = 0
+script = ExtResource("2_0go2l")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
