@@ -51,4 +51,5 @@ func set_pre_round_time(pre_round_time):
 	$RoundStartMessage.text = text
 
 func pause():
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	$PauseMenu.show()

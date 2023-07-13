@@ -1,7 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://dl0jrxyb6mr2g"]
+[gd_scene load_steps=7 format=3 uid="uid://dl0jrxyb6mr2g"]
 
 [ext_resource type="Theme" uid="uid://dvxnb8l6vf6uj" path="res://Assets/UI/Themes/default_theme.tres" id="1_rvmyc"]
 [ext_resource type="Script" path="res://Source/UI/Menu/menu_button.gd" id="2_0go2l"]
+[ext_resource type="AudioStream" uid="uid://drwocmtlcc8o6" path="res://Assets/Audio/SFX/Menu/Confirm.wav" id="3_jinl7"]
+[ext_resource type="AudioStream" uid="uid://dokdlcovdyrkv" path="res://Assets/Audio/SFX/Menu/Click.wav" id="4_kg86j"]
+[ext_resource type="AudioStream" uid="uid://dl2cr2swsb2jx" path="res://Assets/Audio/SFX/Menu/Hover.wav" id="5_nvfys"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s2k8c"]
 
@@ -14,4 +17,14 @@ text = "Placeholder"
 alignment = 0
 script = ExtResource("2_0go2l")
 
+[node name="Confirm" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_jinl7")
+
+[node name="Click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_kg86j")
+
+[node name="Hover" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_nvfys")
+
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]

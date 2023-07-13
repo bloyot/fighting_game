@@ -13,6 +13,7 @@ var curr_round_time: int
 var pre_round_time: int = 4
 
 func _ready():		
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	spawn_player("Player1", false, Vector2(0, 45), player1_color)
 	spawn_player("Player2", Globals.vs_computer, Vector2(250, 45), player2_color)
 	
@@ -31,7 +32,7 @@ func _process(_delta):
 	# toggle the pause state and tell the game ui we are paused
 	# game ui is responsible for unpausing us
 	if Input.is_action_pressed("pause"):				
-		get_tree().paused = true
+		get_tree().paused = true		
 		$GameUI.pause()
 
 
