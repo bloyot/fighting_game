@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bi7yr8csbivfb"]
+[gd_scene load_steps=15 format=3 uid="uid://bi7yr8csbivfb"]
 
 [ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Blackboard/BTBlackboard.gd" id="1_sk5mm"]
 [ext_resource type="Script" path="res://Source/Characters/AI/behavior_tree.gd" id="1_we2kp"]
@@ -7,11 +7,13 @@
 [ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Nodes/Decorators/BTInverter.gd" id="5_g2vw3"]
 [ext_resource type="Script" path="res://Source/Characters/AI/ResetInputAction.gd" id="6_d8ofw"]
 [ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Nodes/Composite/BTSequence.gd" id="6_t24nq"]
-[ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Nodes/Leaves/BTAction.gd" id="8_jm68h"]
 [ext_resource type="Script" path="res://Source/Characters/AI/ConditionShouldBlock.gd" id="9_0q231"]
 [ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Nodes/Composite/BTRandomSelector.gd" id="9_4ulqg"]
 [ext_resource type="Script" path="res://Source/Characters/AI/BlockAction.gd" id="9_dcs72"]
+[ext_resource type="Script" path="res://Source/Characters/AI/JumpAction.gd" id="11_qrjmq"]
 [ext_resource type="Script" path="res://Source/Characters/AI/ManageDistanceAction.gd" id="12_f6r4h"]
+[ext_resource type="Script" path="res://Source/Characters/AI/AttackAction.gd" id="12_kv4qs"]
+[ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Nodes/Leaves/BTActionWait.gd" id="14_mbwtb"]
 
 [node name="BehaviorTree" type="Node2D"]
 script = ExtResource("1_we2kp")
@@ -56,14 +58,32 @@ script = ExtResource("9_dcs72")
 [node name="RandomAction" type="Node" parent="Root/Actions"]
 script = ExtResource("9_4ulqg")
 
-[node name="Jump" type="Node" parent="Root/Actions/RandomAction"]
-script = ExtResource("8_jm68h")
+[node name="RandomAttack" type="Node" parent="Root/Actions/RandomAction"]
+script = ExtResource("6_t24nq")
 
-[node name="Attack" type="Node" parent="Root/Actions/RandomAction"]
-script = ExtResource("8_jm68h")
+[node name="Attack" type="Node" parent="Root/Actions/RandomAction/RandomAttack"]
+script = ExtResource("12_kv4qs")
+
+[node name="Wait" type="Node" parent="Root/Actions/RandomAction/RandomAttack"]
+script = ExtResource("14_mbwtb")
+random_deviation_ms = 250
+
+[node name="RandomJump" type="Node" parent="Root/Actions/RandomAction"]
+script = ExtResource("6_t24nq")
+
+[node name="Jump" type="Node" parent="Root/Actions/RandomAction/RandomJump"]
+script = ExtResource("11_qrjmq")
+
+[node name="Wait" type="Node" parent="Root/Actions/RandomAction/RandomJump"]
+script = ExtResource("14_mbwtb")
+random_deviation_ms = 250
 
 [node name="Idle" type="Node" parent="Root/Actions/RandomAction"]
-script = ExtResource("8_jm68h")
+script = ExtResource("6_t24nq")
+
+[node name="Wait" type="Node" parent="Root/Actions/RandomAction/Idle"]
+script = ExtResource("14_mbwtb")
+random_deviation_ms = 500
 
 [node name="ManageDistance" type="Node" parent="Root/Actions/RandomAction"]
 script = ExtResource("12_f6r4h")
