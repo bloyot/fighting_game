@@ -860,8 +860,6 @@ size = Vector2(65.857, 68.8361)
 
 [node name="FireKnight" type="CharacterBody2D"]
 script = ExtResource("1_g446k")
-recharge_rate = 10.0
-drain_rate = 20.0
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

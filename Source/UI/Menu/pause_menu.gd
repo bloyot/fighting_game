@@ -4,8 +4,7 @@ func _ready():
 	process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 	hide()
 
-func _on_resume_button_pressed():
-	print("resume")
+func _on_resume_button_pressed():	
 	get_tree().paused = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	hide()

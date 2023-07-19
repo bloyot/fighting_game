@@ -1,7 +1,7 @@
 extends Node2D
 
 @export var round_time: int = 300
-@export var dummy_player_controller_script: GDScript
+@export var ai_player_controller_script: GDScript
 @export var player_scene: PackedScene
 
 @export var player1_color: Color
@@ -103,7 +103,7 @@ func _on_player_stamina_changed(player: PlayerController, stamina: float):
 func spawn_player(player_name, is_computer, player_position, player_color):	
 	var player: PlayerController = player_scene.instantiate()		
 	if is_computer:
-		player.set_script(dummy_player_controller_script)		
+		player.set_script(ai_player_controller_script)		
 	player.game_audio = $GameAudio			
 	player.position = player_position
 	player.name = player_name

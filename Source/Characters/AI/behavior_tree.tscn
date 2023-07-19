@@ -1,0 +1,69 @@
+[gd_scene load_steps=13 format=3 uid="uid://bi7yr8csbivfb"]
+
+[ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Blackboard/BTBlackboard.gd" id="1_sk5mm"]
+[ext_resource type="Script" path="res://Source/Characters/AI/behavior_tree.gd" id="1_we2kp"]
+[ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Nodes/BTRoot.gd" id="2_fj2xn"]
+[ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Nodes/Composite/BTSelector.gd" id="5_8squ3"]
+[ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Nodes/Decorators/BTInverter.gd" id="5_g2vw3"]
+[ext_resource type="Script" path="res://Source/Characters/AI/ResetInputAction.gd" id="6_d8ofw"]
+[ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Nodes/Composite/BTSequence.gd" id="6_t24nq"]
+[ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Nodes/Leaves/BTAction.gd" id="8_jm68h"]
+[ext_resource type="Script" path="res://Source/Characters/AI/ConditionShouldBlock.gd" id="9_0q231"]
+[ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Nodes/Composite/BTRandomSelector.gd" id="9_4ulqg"]
+[ext_resource type="Script" path="res://Source/Characters/AI/BlockAction.gd" id="9_dcs72"]
+[ext_resource type="Script" path="res://Source/Characters/AI/ManageDistanceAction.gd" id="12_f6r4h"]
+
+[node name="BehaviorTree" type="Node2D"]
+script = ExtResource("1_we2kp")
+
+[node name="Blackboard" type="Node" parent="."]
+script = ExtResource("1_sk5mm")
+data = {
+"delta": 0,
+"input": {
+"attack": false,
+"attack_special": false,
+"block": false,
+"direction": Vector2(0, 0),
+"jump": false
+},
+"max_distance": 200,
+"min_distance": 75
+}
+
+[node name="Root" type="Node" parent="." node_paths=PackedStringArray("blackboard")]
+script = ExtResource("2_fj2xn")
+blackboard = NodePath("../Blackboard")
+
+[node name="Actions" type="Node" parent="Root"]
+script = ExtResource("5_8squ3")
+
+[node name="Invert" type="Node" parent="Root/Actions"]
+script = ExtResource("5_g2vw3")
+
+[node name="ResetInput" type="Node" parent="Root/Actions/Invert"]
+script = ExtResource("6_d8ofw")
+
+[node name="Block" type="Node" parent="Root/Actions"]
+script = ExtResource("6_t24nq")
+
+[node name="ShouldBlock" type="Node" parent="Root/Actions/Block"]
+script = ExtResource("9_0q231")
+
+[node name="Block" type="Node" parent="Root/Actions/Block"]
+script = ExtResource("9_dcs72")
+
+[node name="RandomAction" type="Node" parent="Root/Actions"]
+script = ExtResource("9_4ulqg")
+
+[node name="Jump" type="Node" parent="Root/Actions/RandomAction"]
+script = ExtResource("8_jm68h")
+
+[node name="Attack" type="Node" parent="Root/Actions/RandomAction"]
+script = ExtResource("8_jm68h")
+
+[node name="Idle" type="Node" parent="Root/Actions/RandomAction"]
+script = ExtResource("8_jm68h")
+
+[node name="ManageDistance" type="Node" parent="Root/Actions/RandomAction"]
+script = ExtResource("12_f6r4h")

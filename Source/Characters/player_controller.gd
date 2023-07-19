@@ -6,8 +6,8 @@ signal state_change(old_state: BaseCharacterState, new_state: BaseCharacterState
 signal damage_taken(player: PlayerController, damage_taken: int)
 signal stamina_changed(player: PlayerController, stamina: float)
 
-@export var recharge_rate: float = 1
-@export var drain_rate: float = 1
+@export var recharge_rate: float = 10
+@export var drain_rate: float = 20
 
 # Plays non character specific sounds like music and hit/block
 var game_audio: GameAudio

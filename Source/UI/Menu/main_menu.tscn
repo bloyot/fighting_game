@@ -41,7 +41,7 @@ target_input_map = {
 "attack": false,
 "attack_special": false,
 "block": false,
-"direction": Vector2(0, 0),
+"direction": 0.0,
 "jump": false
 }
 
@@ -54,7 +54,7 @@ target_input_map = {
 "attack": false,
 "attack_special": false,
 "block": false,
-"direction": Vector2(0, 0),
+"direction": 0.0,
 "jump": false
 }
 

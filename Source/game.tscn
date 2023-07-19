@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://4yqy5hqx3q5o"]
 
 [ext_resource type="Script" path="res://Source/game.gd" id="1_jy8ap"]
+[ext_resource type="Script" path="res://Source/Characters/ai_controller.gd" id="2_mcbnu"]
 [ext_resource type="PackedScene" uid="uid://ygxngejhh6hc" path="res://Source/UI/debug_ui.tscn" id="2_w3e7m"]
-[ext_resource type="Script" path="res://Source/Characters/dummy_controller.gd" id="2_yjpwe"]
 [ext_resource type="PackedScene" uid="uid://dseanuadidjfx" path="res://Source/Characters/FireKnight/fire_knight.tscn" id="3_hc1mj"]
 [ext_resource type="PackedScene" uid="uid://c05mlav2iwcyn" path="res://Source/UI/game_ui.tscn" id="4_mgi5j"]
 [ext_resource type="PackedScene" uid="uid://dtrhxtqg2n3qc" path="res://Source/Levels/level_2.tscn" id="5_ya2uy"]
@@ -12,7 +12,7 @@
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_jy8ap")
-dummy_player_controller_script = ExtResource("2_yjpwe")
+ai_player_controller_script = ExtResource("2_mcbnu")
 player_scene = ExtResource("3_hc1mj")
 player1_color = Color(0.639216, 0.203922, 0.160784, 1)
 player2_color = Color(0.172549, 0.298039, 0.745098, 1)

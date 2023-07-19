@@ -6,7 +6,7 @@ extends PlayerController
 
 # allow input to be set for training/testing
 @export var target_input_map: Dictionary = {
-	"direction": Vector2.ZERO,
+	"direction": 0.0,
 	"attack": false,
 	"attack_special": false,
 	"jump": false,

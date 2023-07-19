@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cvusfkful8kk3"]
+[gd_scene load_steps=3 format=3 uid="uid://cvusfkful8kk3"]
 
 [ext_resource type="Script" path="res://Source/UI/Menu/pause_menu.gd" id="1_jpiui"]
+[ext_resource type="PackedScene" uid="uid://dl0jrxyb6mr2g" path="res://Source/UI/Menu/menu_button.tscn" id="2_058vf"]
 
 [node name="PauseMenu" type="Node2D"]
 script = ExtResource("1_jpiui")
@@ -20,15 +21,15 @@ theme_override_constants/margin_bottom = 10
 layout_mode = 2
 alignment = 1
 
-[node name="ResumeButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="ResumeButton" parent="PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_058vf")]
 layout_mode = 2
 text = "Resume"
 
-[node name="ControlsButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="ControlsButton" parent="PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_058vf")]
 layout_mode = 2
 text = "Controls"
 
-[node name="QuitButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="QuitButton" parent="PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_058vf")]
 layout_mode = 2
 text = "Quit"
 
