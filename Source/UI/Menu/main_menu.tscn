@@ -1,11 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://crov2naneeoar"]
+[gd_scene load_steps=10 format=3 uid="uid://crov2naneeoar"]
 
 [ext_resource type="Script" path="res://Source/UI/Menu/main_menu.gd" id="1_0rdqw"]
 [ext_resource type="Texture2D" uid="uid://opskjr8otvdm" path="res://Assets/Backgrounds/MainMenuBackground.png" id="1_c7yex"]
 [ext_resource type="PackedScene" uid="uid://dseanuadidjfx" path="res://Source/Characters/FireKnight/fire_knight.tscn" id="2_b3utw"]
 [ext_resource type="Script" path="res://Source/Characters/dummy_controller.gd" id="3_42x7i"]
 [ext_resource type="PackedScene" uid="uid://dl0jrxyb6mr2g" path="res://Source/UI/Menu/menu_button.tscn" id="5_r6aig"]
+[ext_resource type="PackedScene" uid="uid://mgo86v5e8gaa" path="res://Source/UI/Menu/credits_menu.tscn" id="6_2626h"]
 [ext_resource type="AudioStream" uid="uid://2f65e7k4yglf" path="res://Assets/Audio/Music/MenuMusic.wav" id="7_6b4tx"]
+[ext_resource type="PackedScene" uid="uid://bfnmvhdt263c0" path="res://Source/UI/Menu/controls_menu.tscn" id="8_2x3u1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qgngr"]
 
@@ -106,6 +108,15 @@ text = "Credits"
 layout_mode = 2
 text = "Quit"
 
+[node name="CreditsMenu" parent="." instance=ExtResource("6_2626h")]
+offset_left = 51.0
+offset_top = 136.0
+offset_right = 200.0
+offset_bottom = 252.0
+
+[node name="ControlsMenu" parent="." instance=ExtResource("8_2x3u1")]
+position = Vector2(108, 148)
+
 [node name="MenuMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_6b4tx")
 volume_db = -9.318
@@ -116,3 +127,5 @@ autoplay = true
 [connection signal="pressed" from="MainMenuOptions/VBoxContainer/Controls" to="." method="_on_controls_pressed"]
 [connection signal="pressed" from="MainMenuOptions/VBoxContainer/Credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="MainMenuOptions/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="back" from="CreditsMenu" to="." method="_on_credits_menu_back"]
+[connection signal="back" from="ControlsMenu" to="." method="_on_controls_menu_back"]

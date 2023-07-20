@@ -1,0 +1,50 @@
+[gd_scene load_steps=2 format=3 uid="uid://mgo86v5e8gaa"]
+
+[ext_resource type="Script" path="res://Source/UI/Menu/credits_menu.gd" id="1_af7iq"]
+
+[node name="CreditsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 633.0
+offset_bottom = 131.0
+script = ExtResource("1_af7iq")
+
+[node name="Margin" type="MarginContainer" parent="."]
+offset_right = 53.0
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Vbox" type="VBoxContainer" parent="Margin"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Margin/Vbox"]
+layout_mode = 2
+text = "Character Art:  https://chierit.itch.io/elementals-fire-knight"
+
+[node name="Label2" type="Label" parent="Margin/Vbox"]
+layout_mode = 2
+text = "Background Art: https://monibtaha.itch.io/mountains-parallaxe-background"
+autowrap_mode = 2
+
+[node name="Label3" type="Label" parent="Margin/Vbox"]
+layout_mode = 2
+text = "Health Bars: https://adwitr.itch.io/pixel-health-bar-asset-pack-2"
+
+[node name="Label4" type="Label" parent="Margin/Vbox"]
+layout_mode = 2
+text = "Music: https://tallbeard.itch.io/music-loop-bundle"
+
+[node name="Label5" type="Label" parent="Margin/Vbox"]
+layout_mode = 2
+text = "SFX: https://shapeforms.itch.io/shapeforms-audio-free-sfx"
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 243.0
+offset_top = 192.0
+offset_right = 293.0
+offset_bottom = 220.0
+text = "Back"
+
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

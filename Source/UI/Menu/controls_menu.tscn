@@ -1,0 +1,87 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfnmvhdt263c0"]
+
+[ext_resource type="Script" path="res://Source/UI/Menu/controls_menu.gd" id="1_k8fve"]
+
+[node name="ControlsMenu" type="Node2D"]
+script = ExtResource("1_k8fve")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/h_separation = 100
+columns = 2
+
+[node name="Keyboard" type="MarginContainer" parent="GridContainer"]
+layout_mode = 2
+
+[node name="Margin" type="VBoxContainer" parent="GridContainer/Keyboard"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GridContainer/Keyboard/Margin"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.203922, 0.603922, 0.835294, 1)
+text = "Keyboard"
+uppercase = true
+
+[node name="Label2" type="Label" parent="GridContainer/Keyboard/Margin"]
+layout_mode = 2
+text = "Movement: Left/Right Arrows"
+autowrap_mode = 2
+
+[node name="Label3" type="Label" parent="GridContainer/Keyboard/Margin"]
+layout_mode = 2
+text = "Attack: A"
+
+[node name="Label4" type="Label" parent="GridContainer/Keyboard/Margin"]
+layout_mode = 2
+text = "Special Attack: S"
+
+[node name="Label5" type="Label" parent="GridContainer/Keyboard/Margin"]
+layout_mode = 2
+text = "Jump: Up Arrow"
+
+[node name="Label6" type="Label" parent="GridContainer/Keyboard/Margin"]
+layout_mode = 2
+text = "Block: Space"
+
+[node name="Controller" type="MarginContainer" parent="GridContainer"]
+layout_mode = 2
+
+[node name="Margin" type="VBoxContainer" parent="GridContainer/Controller"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GridContainer/Controller/Margin"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.203922, 0.603922, 0.835294, 1)
+text = "Controller"
+uppercase = true
+
+[node name="Label2" type="Label" parent="GridContainer/Controller/Margin"]
+layout_mode = 2
+text = "Movement: Joystick Left/Right"
+autowrap_mode = 2
+
+[node name="Label3" type="Label" parent="GridContainer/Controller/Margin"]
+layout_mode = 2
+text = "Attack: A/X"
+
+[node name="Label4" type="Label" parent="GridContainer/Controller/Margin"]
+layout_mode = 2
+text = "Special Attack: B/O"
+
+[node name="Label5" type="Label" parent="GridContainer/Controller/Margin"]
+layout_mode = 2
+text = "Jump: Joystick Up"
+
+[node name="Label6" type="Label" parent="GridContainer/Controller/Margin"]
+layout_mode = 2
+text = "Block: L1/Left Bumper"
+
+[node name="BackButton" type="Button" parent="."]
+offset_left = 173.0
+offset_top = 209.0
+offset_right = 223.0
+offset_bottom = 237.0
+text = "Back"
+
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

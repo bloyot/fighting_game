@@ -10,10 +10,12 @@ func _on_quit_pressed():
 	get_tree().quit()
 
 func _on_credits_pressed():
-	pass # Replace with function body.
+	$MainMenuOptions.hide()
+	$CreditsMenu.show()	
 
 func _on_controls_pressed():
-	pass # Replace with function body.
+	$MainMenuOptions.hide()
+	$ControlsMenu.show()	
 
 func _on_vs_computer_pressed():
 	Globals.vs_computer = true
@@ -22,3 +24,10 @@ func _on_vs_computer_pressed():
 func _on_vs_human_pressed():
 	Globals.vs_computer = false
 	Scene.change_scene(Scene.GAME)
+
+
+func _on_credits_menu_back():
+	$MainMenuOptions.show()
+
+func _on_controls_menu_back():
+	$MainMenuOptions.show()
