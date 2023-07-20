@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bi7yr8csbivfb"]
+[gd_scene load_steps=16 format=3 uid="uid://bi7yr8csbivfb"]
 
 [ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Blackboard/BTBlackboard.gd" id="1_sk5mm"]
 [ext_resource type="Script" path="res://Source/Characters/AI/behavior_tree.gd" id="1_we2kp"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://Source/Characters/AI/ConditionShouldBlock.gd" id="9_0q231"]
 [ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Nodes/Composite/BTRandomSelector.gd" id="9_4ulqg"]
 [ext_resource type="Script" path="res://Source/Characters/AI/BlockAction.gd" id="9_dcs72"]
+[ext_resource type="Script" path="res://addons/yet_another_behavior_tree/src/Nodes/Decorators/BTRandom.gd" id="9_fbk4q"]
 [ext_resource type="Script" path="res://Source/Characters/AI/JumpAction.gd" id="11_qrjmq"]
 [ext_resource type="Script" path="res://Source/Characters/AI/ManageDistanceAction.gd" id="12_f6r4h"]
 [ext_resource type="Script" path="res://Source/Characters/AI/AttackAction.gd" id="12_kv4qs"]
@@ -66,15 +67,19 @@ script = ExtResource("12_kv4qs")
 
 [node name="Wait" type="Node" parent="Root/Actions/RandomAction/RandomAttack"]
 script = ExtResource("14_mbwtb")
-random_deviation_ms = 250
+random_deviation_ms = 500
 
 [node name="RandomJump" type="Node" parent="Root/Actions/RandomAction"]
-script = ExtResource("6_t24nq")
+script = ExtResource("9_fbk4q")
+probability = 0.3
 
 [node name="Jump" type="Node" parent="Root/Actions/RandomAction/RandomJump"]
+script = ExtResource("6_t24nq")
+
+[node name="Jump" type="Node" parent="Root/Actions/RandomAction/RandomJump/Jump"]
 script = ExtResource("11_qrjmq")
 
-[node name="Wait" type="Node" parent="Root/Actions/RandomAction/RandomJump"]
+[node name="Wait" type="Node" parent="Root/Actions/RandomAction/RandomJump/Jump"]
 script = ExtResource("14_mbwtb")
 random_deviation_ms = 250
 

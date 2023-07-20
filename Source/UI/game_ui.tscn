@@ -35,11 +35,11 @@ scale = Vector2(0.4, 0.4)
 position = Vector2(154, 59)
 scale = Vector2(0.4, 0.4)
 
-[node name="RoundP2G3" parent="." instance=ExtResource("3_w2kci")]
+[node name="RoundP2G1" parent="." instance=ExtResource("3_w2kci")]
 position = Vector2(448, 59)
 scale = Vector2(0.4, 0.4)
 
-[node name="RoundP2G4" parent="." instance=ExtResource("3_w2kci")]
+[node name="RoundP2G2" parent="." instance=ExtResource("3_w2kci")]
 position = Vector2(472, 59)
 scale = Vector2(0.4, 0.4)
 
