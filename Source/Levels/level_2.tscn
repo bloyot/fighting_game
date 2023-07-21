@@ -55,6 +55,10 @@ motion_mirroring = Vector2(928, 0)
 position = Vector2(-10, -157)
 texture = ExtResource("6_7huns")
 
+[node name="Sprite2D2" type="Sprite2D" parent="Parallax/LayerGround"]
+position = Vector2(1266, -157)
+texture = ExtResource("6_7huns")
+
 [node name="LayerGround2" type="ParallaxLayer" parent="Parallax"]
 position = Vector2(-257, 0)
 motion_mirroring = Vector2(928, 0)
@@ -63,8 +67,17 @@ motion_mirroring = Vector2(928, 0)
 position = Vector2(0, -156)
 texture = ExtResource("7_pgjnv")
 
+[node name="Sprite2D4" type="Sprite2D" parent="Parallax/LayerGround2"]
+position = Vector2(1281, -156)
+texture = ExtResource("7_pgjnv")
+
 [node name="Sprite2D2" type="Sprite2D" parent="Parallax/LayerGround2"]
 position = Vector2(0, -130)
+texture = ExtResource("7_pgjnv")
+region_rect = Rect2(0, 1586, 0, 1856)
+
+[node name="Sprite2D3" type="Sprite2D" parent="Parallax/LayerGround2"]
+position = Vector2(1295, -130)
 texture = ExtResource("7_pgjnv")
 region_rect = Rect2(0, 1586, 0, 1856)
 

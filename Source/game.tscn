@@ -27,7 +27,7 @@ visible = false
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(126, 40)
 scale = Vector2(1.25, 1)
-zoom = Vector2(1.106, 1.106)
+zoom = Vector2(1.1, 1.1)
 script = ExtResource("6_p6jvm")
 min_x = -1000
 max_x = 1000
