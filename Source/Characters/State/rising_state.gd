@@ -6,19 +6,19 @@ class_name RisingState
 @export var animation_name: StringName = "rising"
 
 func get_state_name():
-    return state_name
+	return state_name
 
 func get_animation_name():
-    return animation_name
+	return animation_name
 
 func update(_delta):
-    super.update(_delta)
-    if (character.velocity.y >= 0):
-        return "falling"
+	super.update(_delta)
+	if (character.velocity.y >= 0):
+		return "falling"
 
-    if has_buffered_input("attack") and not character.air_attack_cooldown:
-        return "air_attack"
+	if has_buffered_input("attack") and not character.air_attack_cooldown:
+		return "air_attack"
 
-    move_left_right() 
+	move_left_right() 
 
-    return ""
+	return ""

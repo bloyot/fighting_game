@@ -37,32 +37,32 @@ var _running_child_index:int = -1
 #------------------------------------------
 
 func tick(actor:Node, blackboard:BTBlackboard) -> int:
-    for child_index in _children.size():
-        if not save_progression or child_index >= _running_child_index:
-            var child:BTNode = _children[child_index]
-            if child.process_mode != PROCESS_MODE_DISABLED:
-                var result:int = child._execute(actor, blackboard)
-                if result != BTTickResult.FAILURE:
-                    if save_progression and result == BTTickResult.RUNNING:
-                        _running_child_index = child_index
-                    return result
+	for child_index in _children.size():
+		if not save_progression or child_index >= _running_child_index:
+			var child:BTNode = _children[child_index]
+			if child.process_mode != PROCESS_MODE_DISABLED:
+				var result:int = child._execute(actor, blackboard)
+				if result != BTTickResult.FAILURE:
+					if save_progression and result == BTTickResult.RUNNING:
+						_running_child_index = child_index
+					return result
 
-    return BTTickResult.FAILURE
+	return BTTickResult.FAILURE
 
 #------------------------------------------
 # Fonctions publiques
 #------------------------------------------
 
 func reset() -> void:
-    _running_child_index = -1
-    super.reset()
+	_running_child_index = -1
+	super.reset()
 
 #------------------------------------------
 # Fonctions privées
 #------------------------------------------
 
 func start(blackboard:BTBlackboard) -> void:
-    _running_child_index = 0
+	_running_child_index = 0
 
 func stop(blackboard:BTBlackboard) -> void:
-    _running_child_index = -1
+	_running_child_index = -1

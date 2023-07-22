@@ -10,6 +10,7 @@ offset_bottom = 131.0
 script = ExtResource("1_af7iq")
 
 [node name="Margin" type="MarginContainer" parent="."]
+layout_mode = 0
 offset_right = 53.0
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_bottom = 5

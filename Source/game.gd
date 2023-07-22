@@ -50,7 +50,11 @@ func _on_player_damage_taken(player: PlayerController, damage_taken: int):
 			winner = $Player1
 			player1_score += 1
 		
-		round_end(winner)			
+		if is_match_complete():
+			match_end(winner)
+		else:
+			round_end(winner)						
+		
 	
 
 func _on_round_timer_timeout():
@@ -91,6 +95,12 @@ func round_end(winner):
 	$Player1.input_wait = true
 	$Player2.input_wait = true
 
+func match_end(winner):
+	$GameUI.round_end(winner, player1_score, player2_score, is_match_complete())
+	$MatchResetTimer.start()
+	$Player1.input_wait = true
+	$Player2.input_wait = true
+
 func is_match_complete():
 	return true if player1_score == 2 or player2_score == 2 else false
 
@@ -128,3 +138,6 @@ func register_devices():
 
 	# setup a notification for game pad changed
 	Input.joy_connection_changed.connect(_on_input_joypad_connection_changed)
+
+func _on_match_reset_timer_timeout():
+	Scene.change_scene(Scene.MAIN_MENU)

@@ -42,6 +42,10 @@ scale = Vector2(1.75, 1.75)
 wait_time = 3.0
 one_shot = true
 
+[node name="MatchResetTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
 [node name="RoundStartTimer" type="Timer" parent="."]
 
 [node name="DeviceInput" type="Node" parent="."]
@@ -49,4 +53,5 @@ script = ExtResource("9_4r6jt")
 
 [connection signal="timeout" from="RoundTimer" to="." method="_on_round_timer_timeout"]
 [connection signal="timeout" from="RoundResetTimer" to="." method="_on_round_reset_timer_timeout"]
+[connection signal="timeout" from="MatchResetTimer" to="." method="_on_match_reset_timer_timeout"]
 [connection signal="timeout" from="RoundStartTimer" to="." method="_on_round_start_timer_timeout"]

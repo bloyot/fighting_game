@@ -15,3 +15,6 @@ data_*/
 .godot/imported
 .godot/global_script_class_cache.cfg
 .godot/uid_cache.bin
+.godot/exported
+
+Builds/

@@ -46,6 +46,8 @@ target_input_map = {
 "direction": 0.0,
 "jump": false
 }
+recharge_rate = 10.0
+drain_rate = 20.0
 
 [node name="FireKnight2" parent="." instance=ExtResource("2_b3utw")]
 position = Vector2(551, 318)
@@ -59,6 +61,8 @@ target_input_map = {
 "direction": 0.0,
 "jump": false
 }
+recharge_rate = 10.0
+drain_rate = 20.0
 
 [node name="Title" type="Label" parent="."]
 anchors_preset = 5
